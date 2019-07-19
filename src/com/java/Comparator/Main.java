@@ -50,7 +50,6 @@ public class Main {
 			temp = cin.next();
 			Students[i].setTel(temp);
 			list.add(Students[i]);
-			
 		}
 		Collections.sort(list,new Comparator<Information>() {  // 匿名内部类
             @Override
