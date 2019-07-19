@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String args[]) {
     // BufferedReader bin = new BufferedReader(new InputStreamReader(System.in));
-
+   
 
     }
 }
