@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * 使用foreach 顺序访问 性能最好
+ * 双向链表
+ */
 public class LinkedListTest {
 
 	public static void main(String[] args) {
@@ -41,6 +45,11 @@ public class LinkedListTest {
 	    long duration = endTime - startTime;
 	    System.out.println(duration + "纳秒");
 	}
+
+	/**
+	 * 访问速度很慢
+	 * @param list
+	 */
 	public static void traverseByIndex(LinkedList<Integer> list)
 	{
 		long startTime = System.nanoTime();
@@ -53,6 +62,7 @@ public class LinkedListTest {
 	    long duration = endTime - startTime;
 	    System.out.println(duration + "纳秒");
 	}
+
 	public static void traverseByFor(LinkedList<Integer> list)
 	{
 		long startTime = System.nanoTime();

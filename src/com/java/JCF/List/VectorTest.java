@@ -5,6 +5,10 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Vector;
 
+/**
+ * 同步，线程安全，性能较差， <br>
+ * 比ArrayList多一个Enumeration遍历方法
+ */
 public class VectorTest {
 
 	public static void main(String[] args) {

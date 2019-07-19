@@ -1,7 +1,7 @@
 package com.java.JCF.List;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.lang.reflect.Array;
+import java.util.*;
 
 //Vector 几乎和ArrayList一样，除了Vector本身是同步的
 
@@ -13,14 +13,17 @@ import java.util.Iterator;
 public class ArrayListTest {
 
 	public static void main(String[] a) {  
-	    ArrayList<Integer> al = new ArrayList<Integer>();  
-	    al.add(3);  
-	    al.add(2); // 在数组末尾添加元素
-	    al.add(new Integer(6));  
-	  
-	    System.out.print("The third element is  ");
-	    System.out.println(al.get(3));
-	    al.remove(3);  //删除第四个元素，后面元素往前挪动
+	    ArrayList<Integer> al = new ArrayList<Integer>();
+
+        al.add(3);
+        al.add(7);
+        al.add(2); // 在数组末尾添加元素
+	    al.add(new Integer(6));
+
+
+        System.out.print("The third element is  ");
+	    System.out.println(al.get(2));
+	    al.remove(2);  //删除第3个元素，后面元素往前挪动
 	    al.add(3, 9);  //将9插入到第4个元素，后面元素往后挪动
 	    
 	    System.out.println("======遍历方法=============");
