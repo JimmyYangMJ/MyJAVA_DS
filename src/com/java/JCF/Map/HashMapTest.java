@@ -1,9 +1,8 @@
 package com.java.JCF.Map;
 
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+
+
+import java.util.*;
 import java.util.Map.Entry;
 
 public class HashMapTest {
@@ -11,6 +10,7 @@ public class HashMapTest {
 
 	public static void main(String[] args) {
 		HashMap<Integer,String> hm =new  HashMap<Integer,String>();
+
 		hm.put(1, null); 
 		hm.put(null, "abc");  
 		hm.put(1000, "aaa");

@@ -1,6 +1,6 @@
 package com.java.JCF.Set;
 
-class Cat
+public class Cat
 {
 	private int size;
 	

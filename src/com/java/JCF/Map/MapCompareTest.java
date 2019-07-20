@@ -10,7 +10,7 @@ public class MapCompareTest {
 
 	public static void main(String[] args) {
 		int n = 1000000;
-		System.out.println("============HashMap=============");
+		System.out.println("============Stack_Queue=============");
 		HashMap<Integer,String> hm =new  HashMap<Integer,String>();
 		for(int i=0;i<n;i++) {
 			hm.put(i, "aaa");

@@ -1,6 +1,6 @@
 package com.java.JCF.Set;
 
-class Dog {
+public class Dog {
     private int size;
  
     public Dog(int s) {
