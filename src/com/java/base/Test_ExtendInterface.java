@@ -1,59 +1,85 @@
 package com.java.base;
 
+
+/**
+ * ç±»ä¹‹é—´çš„ç»§æ‰¿ã€å®ç°ã€å‘ä¸Šé€ å‹ç­‰å®ä¾‹
+ */
+
+/**
+ * å¸¸é‡ç±»
+ */
 final class fff{
 	int aaa = 10;
 }
-interface InterfaceD1{
+
+/**
+ * æ¥å£1
+ * <br>  å¸¸é‡ï¼ŒæŠ½è±¡æ–¹æ³•<br/>
+ */
+interface InterfaceD1 {
 	int b = 66;
-	// µÈÍ¬ÓÚpublic static final int b = 66 
+	// ç­‰åŒäºpublic static final int b = 66 
 	void print();
 	//public abstract void print();
 }
-interface InterfaceS1{
+
+/**
+ * æ¥å£2
+ * <br>  å¸¸é‡<br/>
+ */
+interface InterfaceS2 {
 	int d = 10;
 	
 }
-interface H extends InterfaceD1,InterfaceS1{  //½Ó¿Ú¼Ì³Ğ¶à¸ö½Ó¿Ú
+
+/**
+ * æ¥å£3
+ * <br>  ç»§æ‰¿ æ¥å£ 1 å’Œ æ¥å£2
+ */
+interface H3 extends InterfaceD1, InterfaceS2 {  //æ¥å£ç»§æ‰¿å¤šä¸ªæ¥å£
 	int a = b;
 }
 
-
+/**
+ * æŠ½è±¡ç±»1
+ */
 abstract class AbstractB1{
 	public int as = 0;
 	private int b2 = 22;
-	public AbstractB1(int i) { //³éÏóº¯ÊıµÄ¹¹Ôìº¯Êı
-		this.as = i;    // ×÷ÓÃ£º¸³Óè¶ÔÏóSSSÄÚ±äÁ¿as³õÖµ
+	public AbstractB1(int i) { //æŠ½è±¡å‡½æ•°çš„æ„é€ å‡½æ•°
+		this.as = i;    // ä½œç”¨ï¼šèµ‹äºˆå¯¹è±¡SSSå†…å˜é‡asåˆå€¼
 	}
+
 	public abstract void print();
 	
 	public void printRealize() {
-		System.out.printf("µ÷ÓÃÁË¸¸Àà£º  ³éÏóÀàÖĞµÄ¾ßÌåÊµÏÖµÄ·½·¨\n");
+		System.out.printf("è°ƒç”¨äº†çˆ¶ç±»ï¼š  æŠ½è±¡ç±»1ä¸­çš„å…·ä½“å®ç°çš„æ–¹æ³•\n");
 	}
 	
 }
 
-class A extends AbstractB1 implements H{
+class A extends AbstractB1 implements H3 {
 	static long  moblie = 1000;
 	int b2 = 20;
 	public A(int m) {
 		super(6);
-		int b = 60;  // ¾Ö²¿±äÁ¿
+		int b = 60;  // å±€éƒ¨å˜é‡
 		b2 = m;
 		this.moblie = m; 
-		System.out.printf("¸¸Àà¹¹Ôìº¯Êı--this.b = %d, b = %d, this.as = %d, a = %d \n", this.b, b, this.as, a);
+		System.out.printf("çˆ¶ç±»æ„é€ å‡½æ•°--this.b = %d, b = %d, this.as = %d, a = %d \n", this.b, b, this.as, a);
 		this.printRealize();
-		this.print();  // Ê¹ÓÃthisµ÷ÓÃº¯Êı£¬ÏÈÔÚ×ÓÀàÖĞÑ°ÕÒ¶ÔÓ¦µÄº¯Êı£¬Èç¹ûÃ»ÓĞ¾ÍÔÚ¸¸ÀàÖĞÕÒ
-		// ×ÓÀà²»ÄÜ¼Ì³Ğ¸¸ÀàµÄprivate±äÁ¿£¬ ËùÒÔ²»ÄÜÓÃthis.b2
+		this.print();  // ä½¿ç”¨thisè°ƒç”¨å‡½æ•°ï¼Œå…ˆåœ¨å­ç±»ä¸­å¯»æ‰¾å¯¹åº”çš„å‡½æ•°ï¼Œå¦‚æœæ²¡æœ‰å°±åœ¨çˆ¶ç±»ä¸­æ‰¾
+		// å­ç±»ä¸èƒ½ç»§æ‰¿çˆ¶ç±»çš„privateå˜é‡ï¼Œ æ‰€ä»¥ä¸èƒ½ç”¨this.b2
 	}
 	public A() {
 		super(6);
 		//this(5);
-		System.out.println("¸¸ÀàÎŞ²Î¹¹Ôìº¯Êı");
+		System.out.println("çˆ¶ç±»æ— å‚æ„é€ å‡½æ•°");
 	}
 	public String show(D obj) {
-		//this.show(obj); //µ÷ÓÃ±¾ÀàµÄ³ÉÔ±·½·¨£¬this¿ÉÒÔºöÂÔ
+		//this.show(obj); //è°ƒç”¨æœ¬ç±»çš„æˆå‘˜æ–¹æ³•ï¼Œthiså¯ä»¥å¿½ç•¥
 		
-		return String.format("A and D ÆäÖĞA.moblie = %d", A.moblie); // ¾²Ì¬±äÁ¿Í¨¹ıÀàÖ±½Ó·ÃÎÊ
+		return String.format("A and D å…¶ä¸­A.moblie = %d", A.moblie); // é™æ€å˜é‡é€šè¿‡ç±»ç›´æ¥è®¿é—®
 	}
 	public String show(A obj) {return ("A and A");}/////////////////////////////////////
 	//public String show(B obj) {return ("A and B");}
@@ -61,16 +87,17 @@ class A extends AbstractB1 implements H{
 	
 	@Override
 	public void print() {
-		System.out.printf("ÖØĞ´ÁËInterfaceD1ÖĞµÄprint³éÏó·½·¨ \n");
+		System.out.printf("é‡å†™äº†InterfaceD1ä¸­çš„printæŠ½è±¡æ–¹æ³• \n");
 	}
 	
-	protected void printRealizePrivate() {    // ¸¸ÀàÖĞµÄË½ÓĞ·½·¨²»ÄÜ±»×ÓÀàÖØĞ´
-		System.out.printf("µ÷ÓÃÁË¸¸Àà£º  ³éÏóÀàÖĞµÄ¾ßÌåÊµÏÖµÄ¡¶Ë½ÓĞ¡··½·¨\n");
+	protected void printRealizePrivate() {    // çˆ¶ç±»ä¸­çš„ç§æœ‰æ–¹æ³•ä¸èƒ½è¢«å­ç±»é‡å†™
+		System.out.printf("è°ƒç”¨äº†çˆ¶ç±»ï¼š  æŠ½è±¡ç±»ä¸­çš„å…·ä½“å®ç°çš„ã€Šç§æœ‰ã€‹æ–¹æ³•\n");
 	}
 	
 }
+
 class B extends A{
-	public int bd = 77;  //×ÓÀàÓĞ£¬µ«ÊÇ¸¸ÀàÃ»ÓĞ
+	public int bd = 77;  //å­ç±»æœ‰ï¼Œä½†æ˜¯çˆ¶ç±»æ²¡æœ‰
 	int b2 = 658;
 	public B() {
 		//super(6);
@@ -78,23 +105,26 @@ class B extends A{
 	public B(int m){
 		super(m);
 	}
-	public String show(B obj) {return ("B and B,¸¸Àà½Ó¿Ú³£Á¿"+a);}
+	public String show(B obj) {return ("B and B,çˆ¶ç±»æ¥å£å¸¸é‡"+a);}
 	@Override
 	public String show(A obj) {return ("B and A");}
 	@Override
 	public String show(C obj) {return ("B and C");}
 	
 	@Override
-	public void printRealizePrivate() {    // ¸¸ÀàÖĞµÄË½ÓĞ·½·¨²»ÄÜ±»×ÓÀàÖØĞ´
-		// ¸¸ÀàµÄprotected ·½·¨¿ÉÒÔ±»×ÓÀàÌáÉıÎªpublic
-		System.out.printf("ÖØĞ´ÁË¸¸Ààprotected·½·¨\n");
+	public void printRealizePrivate() {    // çˆ¶ç±»ä¸­çš„ç§æœ‰æ–¹æ³•ä¸èƒ½è¢«å­ç±»é‡å†™
+		// çˆ¶ç±»çš„protected æ–¹æ³•å¯ä»¥è¢«å­ç±»æå‡ä¸ºpublic
+		System.out.printf("é‡å†™äº†çˆ¶ç±»protectedæ–¹æ³•\n");
 	}
 	
 
 
 }
+
 class C extends B{}
+
 class D extends B{}
+
 public  class Test_ExtendInterface{
 	
 	private static int d;
@@ -107,7 +137,7 @@ public  class Test_ExtendInterface{
 		System.out.print(d);
 	}
     public void  getWoman(){
-        class Woman {   //¾Ö²¿ÄÚ²¿Àà
+        class Woman {   //å±€éƒ¨å†…éƒ¨ç±»
             int age =0;
         }
         Woman asdf = new Woman();
@@ -122,16 +152,23 @@ public  class Test_ExtendInterface{
 		System.out.print("+++"+sd.aaa);
 
 		A a1 = new A();
-		System.out.println("----¸¸Àà =  ×ÓÀà ----");
+		System.out.println("----çˆ¶ç±» =  å­ç±» ----");
+
+		/** å‘ä¸Šé€ å‹*/
 		A a2 = new B(3);
-		System.out.printf("¸¸ÀàAÖĞ a2.moblie = %d, a2.b2 = %d\n", a2.moblie, a2.b2);  // ¶ÔÏóÖĞÃ»ÓĞ×ÓÀàBµÄbd±äÁ¿£¬ ¼´Ã»ÓĞ a2.bd
+		System.out.printf("çˆ¶ç±»Aä¸­ a2.moblie = %d, a2.b2 = %d\n", a2.moblie, a2.b2);  // å¯¹è±¡ä¸­æ²¡æœ‰å­ç±»Bçš„bdå˜é‡ï¼Œ å³æ²¡æœ‰ a2.bd
 		a2.print();
-		
+
+		/** æ¥å£ == å®ç°æ¥å£çš„å­ç±»*/
+		H3 interfaceclass = new A();
+		interfaceclass.print();
+
 		System.out.println("-----------------");
 
 		B b= new B(6);
 		
-		B ab = (B) a2;//¸¸Àà×ª»¯Îª×ÓÀà--ÌØÊâÇé¿ö
+		B ab = (B) a2;   //çˆ¶ç±»è½¬åŒ–ä¸ºå­ç±»--ç‰¹æ®Šæƒ…å†µï¼ˆå‘ä¸‹è½¬å‹ï¼Œä¸€èˆ¬ä¸å…è®¸ï¼‰
+		//B ab2 = (B) a1;  // é”™è¯¯ï¼Œä¼šæŠ›å‡ºå¼‚å¸¸ClassCastException
 
 		C c = new C();
 		D d = new D();
@@ -145,7 +182,7 @@ public  class Test_ExtendInterface{
 		System.out.println(a2.show(d));//A and D
 		System.out.println(b.show(b));//B and B
 		System.out.println(b.show(c));//B and C
-		System.out.println(b.show(d));//A and D ÔÚBµÄ¸¸ÀàÖĞÕÒ
+		System.out.println(b.show(d));//A and D åœ¨Bçš„çˆ¶ç±»ä¸­æ‰¾
 
 		
 	}

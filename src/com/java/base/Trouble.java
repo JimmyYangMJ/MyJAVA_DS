@@ -10,9 +10,9 @@ public class Trouble {
 
     public static void main(String[] args) {
         /** 浮点运算精度问题*/
-//        trouble1();
+        trouble1();
 //        trouble2();
-        trouble3();
+//        trouble3();
     }
 
     private final static Lock lock = new ReentrantLock();
