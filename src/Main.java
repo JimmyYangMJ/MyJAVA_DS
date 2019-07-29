@@ -13,12 +13,6 @@ public class Main {
         r.getClass();
         String a;
         System.out.println(Double.compare(5.3, 2.3));
-        byte[] bytes=new byte[1024];
-        FileInputStream fis = null;
-        try {
-            fis.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 }
