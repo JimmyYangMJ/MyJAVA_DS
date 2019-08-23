@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Network {
     private ArrayList<Member> members = new ArrayList<>();
+
     public class Member { // Member is an inner class of Network
         private String name;
         private ArrayList<Member> friends = new ArrayList<>();

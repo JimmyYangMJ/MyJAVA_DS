@@ -27,6 +27,7 @@ public class Templet {
         int nextInt() {
             return Integer.parseInt(next());
         }
+
     }
 
     static void solve(InputStream stream, PrintWriter out) {

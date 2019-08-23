@@ -1,10 +1,14 @@
 package com.designPattern.singleton;
 
+/**
+ * 单例设计模式
+ * 核心：构造方法--采用私有
+ */
 public class Singleton {
     private static Singleton obj = new Singleton(); //共享同一个对象
     private String content;
-
-    private Singleton()  //确保只能在类内部调用构造函数
+    /** 确保只能在类内部调用构造函数*/
+    private Singleton()
     {
         System.out.print("无参构造函数");
         this.content = "abc";

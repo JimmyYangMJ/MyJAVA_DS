@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class Person2Comparator  implements Comparator<Person2> {
+
 	public int compare(Person2 one, Person2 another) {
 		int i = 0;
 		i = one.getName().compareTo(another.getName());
