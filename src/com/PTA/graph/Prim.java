@@ -3,18 +3,18 @@ package com.PTA.graph;
 import java.util.Scanner;
 
 /**
- * ¹«Â·´å´åÍ¨ÎÊÌâ
- * Ëã·¨£º ×îĞ¡Éú³ÉÊ÷  Prim
- * Í¼´æ´¢--- ÁÚ½Ó¾ØÕó
+ * å…¬è·¯æ‘æ‘é€šé—®é¢˜
+ * ç®—æ³•ï¼š æœ€å°ç”Ÿæˆæ ‘  Prim
+ * å›¾å­˜å‚¨--- é‚»æ¥çŸ©é˜µ
  */
 public class Prim {
 
     static Scanner cin = new Scanner(System.in);
-    /** µãÊı£¬ ±ßÊı*/
+    /** ç‚¹æ•°ï¼Œ è¾¹æ•°*/
     static int Nv, Ne;
     static int[][] G;
 
-    /** ½¨Í¼ ,ÏÂ±ê´Ó1¿ªÊ¼*/
+    /** å»ºå›¾ ,ä¸‹æ ‡ä»1å¼€å§‹*/
     static void BuildGraph(){
         Nv = cin.nextInt();
         Ne = cin.nextInt();
@@ -24,7 +24,7 @@ public class Prim {
                 G[i][j] = Integer.MAX_VALUE;
             }
         }
-        for (int i = 1; i < Ne; i++){
+        for (int i = 1; i <= Ne; i++){
             int v1 = cin.nextInt(), v2  = cin.nextInt();
             int w = cin.nextInt();
             G[v1][v2] = w;
@@ -32,26 +32,62 @@ public class Prim {
         }
     }
 
-    /** primËã·¨*/
+    /**
+     * @return --distæœ€å°çš„ä¸‹æ ‡
+     */
+    public static int distMin(int[] dist, boolean[] visited){
+        int min = Integer.MAX_VALUE;
+        int minV = 0; /* å­˜å‚¨ä¸‹æ ‡*/
+        for(int v = 1; v <= Nv; v++){
+            if(visited[v] == false && dist[v] < min){
+                min = dist[v];
+                minV = v;
+            }
+        }
+        if(min < Integer.MAX_VALUE){
+            return minV;
+        }else {
+            return -1; /* è¿™æ ·çš„é¡¶ç‚¹ä¸å­˜åœ¨*/
+        }
+    }
+
+    /** primç®—æ³•*/
     public static void prim(){
         boolean[] visited = new boolean[Nv+1];
-        /** µÚÒ»ÖÖÈ¨ÖØ ÊÕÂ¼×î¶ÌÂ·¾¶*/
+        /** ç¬¬ä¸€ç§æƒé‡ æ”¶å½•æœ€çŸ­è·¯å¾„*/
         int[] dist = new int[Nv+1];
-        /** ¼ÇÂ¼¶¥µãµÄÉÏÒ»¸ö¶¥µã*/
+        /** è®°å½•é¡¶ç‚¹çš„ä¸Šä¸€ä¸ªé¡¶ç‚¹*/
         int[] path = new int[Nv+1];
 
-        /** ĞŞÂ·×Ü»¨·Ñ*/
+        /** ä¿®è·¯æ€»èŠ±è´¹*/
         int sum = 0;
         int vCount = 0;
-        /** ¶ÔÆğµã½øĞĞ³õÊ¼»¯*/
+        for (int i = 1; i <= Nv; i++) {
+            path[i] = 1; /*æš‚ä¸”å®šä¹‰æ‰€æœ‰é¡¶ç‚¹çš„çˆ¶ç»“ç‚¹éƒ½æ˜¯åˆå§‹ç‚¹1*/
+            dist[i] = G[1][i];  /*èµ·ç‚¹çš„é‚»æ¥ç‚¹*/
+        }
+        /** å¯¹èµ·ç‚¹è¿›è¡Œåˆå§‹åŒ–*/
         visited[1] = true;
         dist[1] = 0;
 
-        for (int i = 1; i <= Nv; i++) {
-
+        while (true){
+            int v = distMin(dist, visited); /** æœªæ”¶å½•çš„é¡¶ç‚¹distæœ€å°è€…*/
+            if (v == -1){
+                break;
+            }
+            sum += G[v][path[v]];
+            visited[v] = true;
+            vCount++;
+            for (int i = 1; i <= Nv; i++) {
+                if (G[v][i] < dist[i] ) {
+                    dist[i] = G[v][i];
+                    path[i] = v;
+                }
+            }
         }
-
-
+        if (vCount == (Nv-1))
+            System.out.println(sum);
+        else System.out.println("-1");  /*å›¾ä¸è¿é€š*/
 
     }
 
