@@ -71,7 +71,7 @@ public class BFSDFS {
         int[] visited = new int[Nv];
         for(int i = 0; i < Nv; i++){
             if(visited[i] == 0) { // 可能图不连通
-                System.out.print("{ ");
+                System.out.print("  { ");
                 DFSRecursion(i,visited);
                 System.out.println("}");
             }

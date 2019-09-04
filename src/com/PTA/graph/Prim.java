@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Prim {
 
     static Scanner cin = new Scanner(System.in);
-    /** 点数， 边数*/
+    /** 点数， 边数 从1 开始*/
     static int Nv, Ne;
     static int[][] G;
 
