@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 interface UserService{
-    public void registerUser();
+    abstract public void registerUser();
     public void deleteUser();
 }
 
