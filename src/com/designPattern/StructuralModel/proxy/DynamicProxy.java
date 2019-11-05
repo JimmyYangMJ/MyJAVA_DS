@@ -1,4 +1,4 @@
-package com.designPattern.proxy;
+package com.designPattern.StructuralModel.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

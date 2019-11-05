@@ -1,4 +1,4 @@
-package com.designPattern.singleton;
+package com.designPattern.CreationModel.singleton;
 
 /**
  * 单例设计模式

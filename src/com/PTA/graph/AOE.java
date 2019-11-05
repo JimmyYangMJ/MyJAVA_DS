@@ -3,21 +3,21 @@ package com.PTA.graph;
 import java.util.Scanner;
 
 /**
- * ÍØÆËÅÅĞòËã·¨<br>
- * ÊµÏÖ----AOE <br>
- * °¸Àı----¹Ø¼ü»î¶¯
+ * æ‹“æ‰‘æ’åºç®—æ³•<br>
+ * å®ç°----AOE <br>
+ * æ¡ˆä¾‹----å…³é”®æ´»åŠ¨
  */
 public class AOE {
 
     static Scanner cin = new Scanner(System.in);
-    /** ÏÂ±ê´Ó 1 ¿ªÊ¼*/
+    /** ä¸‹æ ‡ä» 1 å¼€å§‹*/
     static int Nv, Ne;
     static int[][] G;
 
     static void aoe(){
-        /** Èë¶È*/
+        /** å…¥åº¦*/
         int inDegree;
-        /** ³ö¶È*/
+        /** å‡ºåº¦*/
         int outDegree;
     }
     public static void main(String[] args) {

@@ -326,7 +326,6 @@ public class Binarytree {
 
 	// 以T为根节点 ， 查找二叉排序子树中最小的结点
 	public static Node FindMin(Node T) {
-
 		if(T == null) {  // 子树为空结点
 			return null;
 		}else if(T.left != null) {  // 左子树不为空
@@ -356,8 +355,6 @@ public class Binarytree {
 		return null;  // 没有找到
 	}
 
-
-	
 	/**
 	 * 还原二叉树 根据先序和后续恢复二叉树 <核心函数>
 	 * @param pre  先序序列

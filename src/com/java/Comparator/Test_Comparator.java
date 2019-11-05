@@ -11,7 +11,7 @@ class MyComparator2 implements Comparator<String>{
     }
 }
 /*
- * 使用泛型
+ * 浣跨敤娉涘瀷
  */
 class MyComparator1 < T extends Comparable<T> > implements Comparator<T>{
 	@Override
@@ -25,7 +25,7 @@ public class Test_Comparator {
 		String[] s = {"aaa", "eee", "ddd"};
 
 		Comparator<String> cmp = new MyComparator2(); 
-		// Comparator<String> cmp = new MyComparator2(); // 会有警告
+		// Comparator<String> cmp = new MyComparator2(); // 浼氭湁璀﹀憡
 		Arrays.sort(s, cmp);
 		for(String n:s) {
 			System.out.println(n);

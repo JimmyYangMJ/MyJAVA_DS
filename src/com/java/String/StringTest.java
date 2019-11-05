@@ -1,7 +1,5 @@
 package com.java.String;
 
-import java.util.Scanner;
-
 public class StringTest {
 	
 

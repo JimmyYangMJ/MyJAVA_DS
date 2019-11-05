@@ -1,8 +1,4 @@
 package com.PTA.graph;
-
-
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.util.Scanner;
 
 public class Test {

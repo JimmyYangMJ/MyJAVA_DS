@@ -78,6 +78,11 @@ public class BFSDFS {
         }
     }
 
+    /**
+     * DFS 递归
+     * @param head
+     * @param v  是否访问过
+     */
     static void DFSRecursion(int head, int[] v){
         v[head] = 1;
         System.out.print(head + " ");

@@ -1,4 +1,4 @@
-package com.designPattern.singleton;
+package com.designPattern.CreationModel.singleton;
 
 
 public class Test {

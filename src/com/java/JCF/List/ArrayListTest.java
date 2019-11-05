@@ -14,7 +14,8 @@ public class ArrayListTest {
 
 	public static void main(String[] a) {  
 	    ArrayList<Integer> al = new ArrayList<Integer>();
-
+		/** 第一个位置没有赋值，不能给第二个位置赋值 */
+		// al.add(1, 3);  (错误)
         al.add(3);
         al.add(7);
         al.add(2); // 在数组末尾添加元素
@@ -25,7 +26,7 @@ public class ArrayListTest {
 	    System.out.println(al.get(2));
 	    al.remove(2);  //删除第3个元素，后面元素往前挪动
 	    al.add(3, 9);  //将9插入到第4个元素，后面元素往后挪动
-	    
+
 	    System.out.println("======遍历方法=============");
 	    
 	    ArrayList<Integer> as = new ArrayList<Integer>(100000);
