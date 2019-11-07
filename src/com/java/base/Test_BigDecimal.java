@@ -21,7 +21,7 @@ public class Test_BigDecimal {
 			System.out.print(name+" ");
 			String g = String.format("%.2f",sum);
 			System.out.println(g);
-			/** ¸³³õÖµ*/
+			/** èµ‹åˆå€¼*/
 			BigDecimal a = BigDecimal.valueOf(1.2);
 			System.out.println(a);
 		}
