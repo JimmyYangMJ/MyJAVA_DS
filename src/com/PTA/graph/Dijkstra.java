@@ -71,9 +71,9 @@ public class Dijkstra {
             if(v == -1){
                 break; /* 这样的顶点不存在*/
             }
-            visited[v] = true;
+            visited[v] = true; // 之后对v的每一个邻接点进行访问
             for(int w = 0; w < Nv; w++){ /* 对v的每一个邻接点访问*/
-                if(visited[w] == false && G[v][w] < Integer.MAX_VALUE){
+                if(visited[w] == false && G[v][w] < Integer.MAX_VALUE){ // 没访问过的邻接点
                     if(G[v][w] < 0){ /*存在负边*/
                         return false;
                     }

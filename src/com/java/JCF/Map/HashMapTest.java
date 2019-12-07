@@ -16,7 +16,7 @@ public class HashMapTest {
 		hm.put(1000, "aaa");
 		hm.put(2, "bbb");
 		hm.put(30000, "ccc");
-		System.out.println(hm.containsValue("aaa"));
+		System.out.println(hm.containsValue("abc"));
 		System.out.println(hm.containsKey(30000));
 		System.out.println(hm.get(30000));
 		

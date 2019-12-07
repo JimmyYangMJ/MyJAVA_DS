@@ -22,11 +22,8 @@ class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser() {
-
         //System.out.println("权限校验...");
-
         System.out.println("删除一个用户");
-
         //System.out.println("日志记录...");
     }
 

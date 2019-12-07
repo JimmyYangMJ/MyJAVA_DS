@@ -10,6 +10,8 @@ public class StringCase {
 
 	public static void newString(){
 		String s = new String();
+		char[] a = new String("asd").toCharArray();
+		String.copyValueOf(a);
 
 	}
 
