@@ -1,4 +1,4 @@
-package com.PTA.graph;
+package com.PTA.graph.Dijkstra;
 
 import java.util.Arrays;
 import java.util.Scanner;

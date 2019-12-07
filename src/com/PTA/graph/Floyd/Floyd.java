@@ -1,4 +1,4 @@
-package com.PTA.graph;
+package com.PTA.graph.Floyd;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -83,7 +83,12 @@ public class Floyd {
                 animal = i;
             }
         }
-        System.out.println(animal + " " + min);
+        if(animal == 0){
+            System.out.println(0);
+        }else{
+            System.out.println(animal + " " + min);
+        }
+
     }
 
     public static void main(String[] args) {
