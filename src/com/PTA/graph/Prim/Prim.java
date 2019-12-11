@@ -1,9 +1,9 @@
-package com.PTA.graph;
+package com.PTA.graph.Prim;
 
 import java.util.Scanner;
 
 /**
- * 公路村村通问题
+ * PTA 公路村村通问题
  * 算法： 最小生成树  Prim
  * 图存储--- 邻接矩阵
  */

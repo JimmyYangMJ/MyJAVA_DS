@@ -1,10 +1,11 @@
-package com.PTA.graph;
+package com.PTA.graph.Kruskal;
 
 import java.util.*;
 
 /**
  * 公路村村通问题
  * 算法： 最小生成树  Kruskal
+ * 无向有权图
  * 图存储--- 邻接矩阵
  */
 public class Kruskal {

@@ -1,20 +1,40 @@
-package com.PTA.graph;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+package com.PTA.graph.Dijkstra;
 
-import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
-public class Test {
-
+/**
+ * 城市间紧急救援
+ * 求 最短路径的条数， 权重和最大， 具体路径
+ * 邻接矩阵
+ * @Date： 2019/12/7 19:06
+ */
+public class Main2 {
     static int Nv, Ne, start, end;
     static int[][] G;
     static int[] weight;
     static final int MAX = 501;
+    static Scanner cin = new Scanner(System.in);
 
-    static boolean dijkstra(int[] dist, int[] path, PrintWriter out) {
+    public static void main(String[] args) {
+        Nv = cin.nextInt();
+        Ne = cin.nextInt();
+        start = cin.nextInt();
+        end = cin.nextInt();
+        weight = new int[Nv];
+        for(int i = 0; i < Nv ; i++) {
+            weight[i] = cin.nextInt();
+        }
+        buildGraph();
+        int[] dist = new int[Nv];
+        int[] path = new int[Nv];
+        dijkstra(dist, path);
+
+
+    }
+
+    static boolean dijkstra(int[] dist, int[] path) {
         int[] dist2 = new int[Nv];  // 第二权重
         int[] num = new int[Nv];
         Arrays.fill(num, 1);
@@ -55,7 +75,7 @@ public class Test {
             }
         }
 
-        out.println(num[end] + " " + dist2[end]);
+        System.out.println(num[end] + " " + dist2[end]);
         Stack<Integer> stack = new Stack();
         stack.push(end);
         do {
@@ -64,9 +84,9 @@ public class Test {
         }while (end != start);
         int size = stack.size();
         for(int i = 0; i < size; i++){
-            out.print(stack.pop());
+            System.out.print(stack.pop());
             if(i+1 != size) {
-                out.print(" ");
+                System.out.print(" ");
             }
         }
 
@@ -86,7 +106,7 @@ public class Test {
     }
 
     /** 建图, 邻接矩阵 */
-    static void buildGraph(FR cin){
+    static void buildGraph(){
         G = new int[Nv][Nv];
         /** 一开始图不连通 */
         for (int i = 0; i < Nv; i++) {
@@ -100,55 +120,4 @@ public class Test {
         }
     }
 
-
-    static class FR {
-        BufferedReader br;
-        StringTokenizer tk;
-
-        FR(InputStream stream) {
-            br = new BufferedReader(new InputStreamReader(stream), 32768);
-            tk = null;
-        }
-
-        String next() {
-            while (tk == null || !tk.hasMoreElements()) {
-                try {
-                    tk = new StringTokenizer(br.readLine());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return tk.nextToken();
-        }
-
-        int nextInt() {
-            return Integer.parseInt(next());
-        }
-
-    }
-
-    static void solve(InputStream stream, PrintWriter out) {
-        FR cin = new FR(stream);
-        Nv = cin.nextInt();
-        Ne = cin.nextInt();
-        start = cin.nextInt();
-        end = cin.nextInt();
-        weight = new int[Nv];
-        for(int i = 0; i < Nv ; i++) {
-            weight[i] = cin.nextInt();
-        }
-        buildGraph(cin);
-        int[] dist = new int[Nv];
-        int[] path = new int[Nv];
-        dijkstra(dist, path, out);
-
-    }
-
-    public static void main(String[] args) {
-        OutputStream os = System.out;
-        InputStream is = System.in;
-        PrintWriter out = new PrintWriter(os);
-        solve(is, out);
-        out.close(); // 不关闭就没有输出
-    }
 }
