@@ -27,7 +27,7 @@ public class HashMapTest {
 		System.out.println();
 		hm.put(30000, "ddd");  //¸üÐÂ¸²¸Çccc
 		System.out.println(hm.get(30000));
-		
+
 		hm.remove(2);
 		System.out.println("size: " + hm.size());
 		

@@ -51,8 +51,14 @@ public class KnapSack_01 {
 			weight[i] = cin.nextInt();
 			value[i] = cin.nextInt();
 		}
-		
 		int sum = KnapSack(n, c, weight, value);
+		for (int[] temp : dp) {
+			for (int temp2 : temp) {
+				System.out.printf("%d\t", temp2);
+			}
+			System.out.println();
+		}
+
 		System.out.print(sum);
 	}
 

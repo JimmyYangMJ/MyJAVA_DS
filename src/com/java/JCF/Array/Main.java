@@ -25,7 +25,7 @@ public class Main {
 		}
 	}
 	
-	
+	/** Êý×é¸´ÖÆ */
 	public static void arraycopy() {
 		int[] a = {1,2,3,4};
 		int[] aCopy = Arrays.copyOf(a, a.length);
