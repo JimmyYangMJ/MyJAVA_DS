@@ -1,15 +1,19 @@
-import java.util.Deque;
-import java.util.HashSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * @author ymj
- * @Date�� 2019/12/14 23:44
+ * @Date： 2019/12/14 23:44
  */
 public class Main {
 
     public static void main(String[] args) {
-        String a = "qwe_123kasd..a,// 234asADFfgZ";
-        System.out.println(a.replaceAll("[^a-z^A-Z.////{2}]", ""));
+        LocalDateTime rightNow = LocalDateTime.now();
+
+        System.out.println("当前：" + rightNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss") ));
+
+
     }
 
 }
