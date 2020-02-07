@@ -1,6 +1,5 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ymj
@@ -8,10 +7,20 @@ import java.util.Date;
  */
 public class Main {
 
-    public static void main(String[] args) {
-        LocalDateTime rightNow = LocalDateTime.now();
+    public int romanToInt(String s) {
+        return 0;
+    }
 
-        System.out.println("当前：" + rightNow.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss") ));
+    public static void main(String[] args) {
+
+        Map<String, Integer> map = new HashMap<>();
+        map.put("I", 1);
+        map.put("V", 5);
+        map.put("X", 10);
+        map.put("L", 50);
+        map.put("C", 100);
+        map.put("D", 500);
+        map.put("M", 1000);
 
 
     }
