@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -7,21 +9,19 @@ import java.util.Map;
  */
 public class Main {
 
-    public int romanToInt(String s) {
-        return 0;
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+
+        for (int i = 1; i <= rowIndex; i++) {
+            
+            list.add(list.get(i-1) + list.get(i));
+        }
+
+        return list;
     }
 
     public static void main(String[] args) {
-
-        Map<String, Integer> map = new HashMap<>();
-        map.put("I", 1);
-        map.put("V", 5);
-        map.put("X", 10);
-        map.put("L", 50);
-        map.put("C", 100);
-        map.put("D", 500);
-        map.put("M", 1000);
-
 
     }
 

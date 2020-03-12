@@ -1,4 +1,5 @@
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,16 +13,31 @@ public class MainTest {
 
     static Scanner cin = new Scanner(System.in);
 
-    public static void main(String[] args) {
 
-    }
 
-    public int maxProfit(int[] prices) {
-        int flag = 0;
-        for (int i = 1; i < prices.length; i++) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
+//
+//        String str ="hello word !!";
+//        System.out.println(str);
+//
+//        str = str.replace('l','d');
+//        System.out.println( str);
+//
+//        str = str.replaceAll("d","l");
+//        System.out.println(str);
+//
+//        str = str.replaceFirst("l","");
+//        System.out.println(str);
+//
+//        String a = "aasc sda";
+//
+//        System.out.println(a.replaceAll("a", "b"));
 
-        }
-        return 0;
+        int s = 10;
+        long x = 100;
+        Long a = new Long(100);
+        
+        System.out.println(x-10);
     }
 
 }
