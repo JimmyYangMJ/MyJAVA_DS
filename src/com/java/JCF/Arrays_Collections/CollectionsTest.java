@@ -12,15 +12,17 @@ public class CollectionsTest {
         list.add(2);
         list.add(19);
          
-        // ÅÅĞò
+        // æ’åº
         Collections.sort(list);
-        // ¼ìË÷
-        System.out.println("ÔªËØËùÔÚµÄË÷ÒıÖµÊÇ£º" + Collections.binarySearch(list, 12));
-        //×î´ó×îĞ¡
-        System.out.println("×î´óÖµ£º" + Collections.max(list));
-        System.out.println("×îĞ¡Öµ£º" + Collections.min(list));
-        Collections.reverse(list); //·­×ª²»ĞèÒªÓÃµ½ÅÅĞò
+        System.out.println("å…ƒç´ ä¸­æœ€å¤§: " + Collections.max(list));
+        list = (ArrayList<Integer>) Collections.synchronizedList(list);
+        // æ£€ç´¢
+        System.out.println("å…ƒç´ æ‰€åœ¨çš„ç´¢å¼•å€¼æ˜¯ï¼š" + Collections.binarySearch(list, 12));
+        //æœ€å¤§æœ€å°
+        System.out.println("æœ€å¤§å€¼ï¼š" + Collections.max(list));
+        System.out.println("æœ€å°å€¼ï¼š" + Collections.min(list));
+        Collections.reverse(list); //ç¿»è½¬ä¸éœ€è¦ç”¨åˆ°æ’åº
          
-        Collections.fill(list, 100); //È«²¿¸³ÖµÎª100
+        Collections.fill(list, 100); //å…¨éƒ¨èµ‹å€¼ä¸º100
 	}
 }

@@ -1,24 +1,39 @@
 package com.net.tcp;
 
+
 import java.net.*;
 import java.io.*;
+import java.util.Scanner;
 
-public class TcpClient {
+public class TcpClient implements Runnable{
+
+	static Scanner cin = new Scanner(System.in);
+
+	static BufferedReader brNet;
+
+	static DataOutputStream dos;
+
 	public static void main(String[] args) {
 		try {
-			Socket s = new Socket(InetAddress.getByName("127.0.0.1"), 8080); //需要服务端先开启
+			/** 先开启 */
+			Socket socket = new Socket(InetAddress.getByName("192.168.179.182"), 8000);
 
-			//同一个通道，服务端的输出流就是客户端的输入流；服务端的输入流就是客户端的输出流
-			InputStream ips = s.getInputStream();    //开启通道的输入流
-			BufferedReader brNet = new BufferedReader(new InputStreamReader(ips));
-			
-			OutputStream ops = s.getOutputStream();  //开启通道的输出流
-			DataOutputStream dos = new DataOutputStream(ops);			
+			//鍚屼竴涓�氶亾锛屾湇鍔＄鐨勮緭鍑烘祦灏辨槸瀹㈡埛绔殑杈撳叆娴侊紱鏈嶅姟绔殑杈撳叆娴佸氨鏄鎴风鐨勮緭鍑烘祦
+			InputStream ips = socket.getInputStream();    /** 1. 寮�鍚�氶亾鐨勮緭鍏ユ祦 */
+			brNet = new BufferedReader(new InputStreamReader(ips));
+
+			OutputStream ops = socket.getOutputStream();  /** 2. 寮�鍚�氶亾鐨勮緭鍑烘祦 */
+			dos = new DataOutputStream(ops);
 
 			BufferedReader brKey = new BufferedReader(new InputStreamReader(System.in));
-			while (true) 
+			Thread thread = new Thread(new TcpClient());
+			thread.start();
+
+			while (true)
 			{
-				String strWord = brKey.readLine();
+				/* 写 */
+//				String strWord = brKey.readLine();
+				String strWord = cin.nextLine();
 				if (strWord.equalsIgnoreCase("quit"))
 				{
 					break;
@@ -27,18 +42,40 @@ public class TcpClient {
 				{
 					System.out.println("I want to send: " + strWord);
 					dos.writeBytes(strWord + System.getProperty("line.separator"));
-					
-					System.out.println("Server said: " + brNet.readLine());
+
+//					System.out.println("Server said: " + brNet.readLine());
 				}
-				
+
 			}
-			
+
 			dos.close();
 			brNet.close();
 			brKey.close();
-			s.close();
+			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void run() {
+		while (true){
+
+			String temp = "";
+			try {
+				temp = brNet.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Server said: " + temp);
+			String strWord = "";
+			if (strWord.equalsIgnoreCase("quit"))
+			{
+				break;
+			}
+		}
+		// 写
+
 	}
 }

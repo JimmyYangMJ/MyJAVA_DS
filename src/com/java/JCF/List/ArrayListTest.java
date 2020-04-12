@@ -21,8 +21,7 @@ public class ArrayListTest {
         al.add(2); // 在数组末尾添加元素
 	    al.add(new Integer(6));
 
-
-        System.out.print("The third element is  ");
+	    System.out.print("The third element is  ");
 	    System.out.println(al.get(2));
 	    al.remove(2);  //删除第3个元素，后面元素往前挪动
 	    al.add(3, 9);  //将9插入到第4个元素，后面元素往后挪动

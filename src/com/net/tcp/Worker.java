@@ -2,8 +2,9 @@ package com.net.tcp;
 
 import java.net.*;
 import java.io.*;
-
+/** 服务器端的一个 线程 */
 class Worker implements Runnable {
+
 	Socket s;
 
 	public Worker(Socket s) {

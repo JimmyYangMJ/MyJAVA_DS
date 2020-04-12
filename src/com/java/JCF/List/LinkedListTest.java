@@ -18,6 +18,7 @@ public class LinkedListTest {
 	    ll.add(6);  
 	    ll.add(6);  
 	    System.out.println(ll.size());
+		ll.getFirst();
 	    ll.addFirst(9);  //在头部增加9
 	    ll.add(3, 10);   //将10插入到第四个元素，四以及后续的元素往后挪动
 	    ll.remove(3);    //将第四个元素删除

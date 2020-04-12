@@ -1,7 +1,10 @@
 package com.acm.leecode.divideAndConquer;
 
 /**53 最大子列和
+ * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
  * 方法1 分治
+ * 方法2 贪心（在线处理）
+ *
  * @author ymj
  * @Date： 2019/12/14 18:52
  */
