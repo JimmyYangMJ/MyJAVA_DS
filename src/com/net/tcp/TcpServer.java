@@ -16,7 +16,7 @@ public class TcpServer implements Runnable{
 		try {
 			/** 先开启 */
 			// 服务器码头，如果有多块网卡，需要绑定一个IP地址
-			ServerSocket ss=new ServerSocket(8000); //驻守在8000端口
+			ServerSocket ss = new ServerSocket(8001); //驻守在8000端口
 
 			Socket socket = ss.accept();  /** 阻塞，等到有客户端连接上来 */
 

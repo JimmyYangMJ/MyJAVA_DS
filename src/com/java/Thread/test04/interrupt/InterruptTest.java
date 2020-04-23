@@ -6,12 +6,14 @@ public class InterruptTest {
 		TestThread1 t1 = new TestThread1();
 		TestThread2 t2 = new TestThread2();
 
+
 		t1.start();
 		t2.start();
 
 		// 让线程运行一会儿后中断
 		Thread.sleep(2000);
 		t1.interrupt();
+
 		t2.flag = false;
 		System.out.println("main thread is exiting");
 	}
@@ -20,6 +22,7 @@ public class InterruptTest {
 
 class TestThread1 extends Thread {
 	public void run() {
+
 		// 判断标志，当本线程被别人interrupt后，JVM会被本线程设置interrupted标记
 		while (!interrupted()) {
 			System.out.println("test thread1 is running");

@@ -1,10 +1,7 @@
-package com.net.nio;
+package com.net.nio.test2;
 
 import java.io.IOException;
-import java.net.ConnectException;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -12,6 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.UUID;
 
 public class NioClient implements Runnable{
 
@@ -22,15 +20,10 @@ public class NioClient implements Runnable{
 	public static SelectionKey key = null;
 	public static Selector selector = null;
 
-	private static SocketChannel socketChannel = null;
-
-	private static int sendCount = 0;
-
-	public static void main(String[] args)  {
+	public static void main(String[] args){
 
 		//String host = "192.168.179.182";
 		String host = "127.0.0.1";
-//		String host = "47.96.130.110";
 		int port = 8001;
 
 		System.out.print("输入客户端编号：" );
@@ -38,12 +31,11 @@ public class NioClient implements Runnable{
 
 		new Thread(new NioClient()).start();
 
+
 		System.out.println(ID);
 
 		selector = null;
-
-
-
+		SocketChannel socketChannel = null;
 
 		try {
 			selector = Selector.open(); // 开选择器
@@ -55,26 +47,17 @@ public class NioClient implements Runnable{
 				System.out.println("服务器连接成功");
 				System.out.println("reda 读取");
 				System.out.println(socketChannel.register(selector, SelectionKey.OP_READ));
-				/** 发送 确认 */
-				doWrite(socketChannel, "<accept>");
-			} else { // 没有建立连接
+				/** 开始写数据 */
+				doWrite(socketChannel);
+			} else {
+
 				socketChannel.register(selector, SelectionKey.OP_CONNECT); // 选择器和通道 注册绑定
-				socketChannel.socket().setSoTimeout(10000);
 				System.out.println("选择器注册成功， connect 连接");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
-
-		/** 获取通道的 Socket */
-		Socket tmpSocket = socketChannel.socket();
-		try {
-			tmpSocket.setSoTimeout(5000); // 设置连接超时限制
-		}catch (SocketException  e){
-			System.out.println("连接超时");
-		}
-
 
 		while (true) {
 			try {
@@ -88,14 +71,13 @@ public class NioClient implements Runnable{
 					try {
 						// 处理每一个channel
 						handleInput(selector, key);
-					}catch (ConnectException e) {
-						System.out.println("连接异常");
+					}
+					catch (Exception e) {
 						if (key != null) {
 							key.cancel();
 							if (key.channel() != null)
 								key.channel().close();
 						}
-
 					}
 				}
 			} catch (Exception e) {
@@ -117,22 +99,22 @@ public class NioClient implements Runnable{
 
 	/**
 	 * 写数据
-	 * @param socketChannel
-	 * @param message 格式：[id]：[message]
-	 * @return -1: 通道连接断开， 1；数据已发送， -2：没有要发送的数据
+	 * @param sc
 	 * @throws IOException
 	 */
-	public static int doWrite(SocketChannel socketChannel, String message) throws IOException {
+	public static void doWrite(SocketChannel sc) throws IOException {
 
-		message = Integer.toString(ID) + ":" + message;
 
-		byte[] str = message.getBytes();
+		String temp = cin.nextLine();
+		temp = Integer.toString(ID) + ":" + temp;
+
+		byte[] str = temp.getBytes();
+//		byte[] str = UUID.randomUUID().toString().getBytes();
 		ByteBuffer writeBuffer = ByteBuffer.allocate(str.length);
 		writeBuffer.put(str);
-		writeBuffer.flip(); //
-		socketChannel.write(writeBuffer); // 向通道发送数据
+		writeBuffer.flip();
 
-		return  1;
+		sc.write(writeBuffer); // 向通道发送数据
 	}
 
 	/**
@@ -145,79 +127,83 @@ public class NioClient implements Runnable{
 		/**  判断是否连接成功*/
 		if (key.isValid()) {
 			// 获取key 相对应 的 通道Channel
-			SocketChannel socketChannel = (SocketChannel) key.channel();
+			SocketChannel sc = (SocketChannel) key.channel();
 			if (key.isConnectable()) { // 判断 key 和 selector 是否已经注册
-
-				if (socketChannel.finishConnect()) {
-					socketChannel.register(selector, SelectionKey.OP_READ); // 可以读数据
-					/** 第一次发送数据 */
-					doWrite(socketChannel, "<request>");
-					System.out.println("连接成功");
+				if (sc.finishConnect()) {
+					sc.register(selector, SelectionKey.OP_READ);
 				}
 			}
 
-		if (key.isReadable()) {
+			// 可以读数据
+			if (key.isReadable()) {
+				System.out.println("可以读数据");
 				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
-				int readBytes = socketChannel.read(readBuffer);
+				int readBytes = sc.read(readBuffer);
 				if (readBytes > 0) {
 					readBuffer.flip();
 					byte[] bytes = new byte[readBuffer.remaining()];
 					readBuffer.get(bytes);
 					String body = new String(bytes, "UTF-8");
-
-					// Todo 数据处理
-					if (message(body) == 3){
-						/** 返回确认数据 */
-						doWrite(socketChannel,"<accept>");
-					}
-
+					System.out.println("Server said : " + body);
 				} else if (readBytes < 0) {
 					// 对端链路关闭
 					key.cancel();
-					socketChannel.close();
+					sc.close();
 				} else
 					; // 读到0字节，忽略
 			}
 			//Thread.sleep(3000);
+
+			/** 发送数据 */
+			doWrite(sc);
 		}
 	}
 
-
-	/**
-	 * 处理接受的数据
-	 * @param message
-	 * @return 1：发送包的确认, 2 心跳包, 3 数据包
-	 */
-	public static int message(String message){
-		if(message.trim().equals("<accept>")){
-			System.out.println("发送成功");
-			return 1;
-		}else if(message.trim().equals("<tick>")){
-			return 2;
-		}else{
-			System.out.println("Server said 6: " + message);
-			return 3;
-		}
-	}
-
-	/** 发送数据数据线程*/
+	/** 监听数据 */
 	@Override
 	public void run() {
 		while (true) {
-			String message = cin.nextLine();
-
 			try {
-				doWrite(socketChannel, message);
-			} catch (IOException e) {
+
+				SocketChannel sc = (SocketChannel) key.channel();
+				if (key.isConnectable()) { // 判断 key 和 selector 是否已经注册
+					if (sc.finishConnect()) {
+						sc.register(selector, SelectionKey.OP_READ);
+
+					}
+					// System.out.printf("已经注册");
+				}
+
+				if (key.isReadable()) {
+					ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+					int readBytes = sc.read(readBuffer);
+					if (readBytes > 0) {
+						readBuffer.flip();
+						byte[] bytes = new byte[readBuffer.remaining()];
+						readBuffer.get(bytes);
+						String body = new String(bytes, "UTF-8");
+
+						System.out.println("Server said : " + body);
+					} else if (readBytes < 0) {
+						// 对端链路关闭
+						key.cancel();
+						sc.close();
+						System.out.print("对端链路关闭");
+					} else {
+						System.out.print("0");; // 读到0字节，忽略
+					}
+
+				}
+
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-//			try {
-//				 Thread.sleep(4000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-
-
 		}
 	}
+
+
 }

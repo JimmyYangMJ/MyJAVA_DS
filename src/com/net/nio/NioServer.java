@@ -1,38 +1,39 @@
 package com.net.nio;
 
+import io.netty.channel.ChannelInitializer;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Set;
+import java.nio.channels.*;
+import java.util.*;
 
-public class NioServer {
+public class NioServer implements Runnable{
+
+	public static Scanner cin = new Scanner(System.in);
+
+	public static Map<Integer, SelectionKey> ClientMap = new HashMap<>();
+
+	private static final int PORT = 8001;
+
 
     public static void main(String[] args) throws IOException {
-    	int port = 8001;
+
     	Selector selector = null;
-    	ServerSocketChannel servChannel = null;
+    	ServerSocketChannel serverSocketChannel = null;
 
     	/** 通道初始化 */
-    	try {
-			selector = Selector.open(); // 产生多路选择器
-			servChannel = ServerSocketChannel.open(); // 开启 socket通道
-			servChannel.configureBlocking(false); // 开启非阻塞模式
-			servChannel.socket().bind(new InetSocketAddress(port), 1024); // 驻守在 port端口
-			servChannel.register(selector, SelectionKey.OP_ACCEPT); // 绑定多路选择器+通道
-			System.out.printf("服务器在%d端口守候\n", port);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-    	
+		selector = Selector.open(); // 产生多路选择器
+		serverSocketChannel = ServerSocketChannel.open(); // 开启 socket通道（Channel）
+		socketChannelInitial(selector, serverSocketChannel);
+
+		/** 向客户端发送心跳包-线程*/
+		new Thread(new NioServer()).start();
+
     	while(true) {
     		try {
-    			selector.select(1000); // 开始轮询 通道
+				selector.select(1000); // 多路选择器开始轮询 通道最多阻塞2000ms
+
     			Set<SelectionKey> selectedKeys = selector.selectedKeys();
     			Iterator<SelectionKey> it = selectedKeys.iterator();
     			SelectionKey key = null;
@@ -40,8 +41,8 @@ public class NioServer {
     				key = it.next();
     				it.remove();
     				try {
-    					/** 开始读数据 */
-    					handleInput(selector,key);
+    					/** 开始处理通道 */
+    					handleInput(selector, key);
     				} catch (Exception e) {
     					if (key != null) {
     						key.cancel();
@@ -50,52 +51,96 @@ public class NioServer {
     					}
     				}
     			}
-    		} 
-    		catch(Exception ex)
-    		{
-    			ex.printStackTrace();    			
+    		} catch(Exception ex) {
+    			ex.printStackTrace();
     		}
-    		
-    		try
-    		{
-    			Thread.sleep(500);
-    		}
-    		catch(Exception ex)
-    		{
-    			ex.printStackTrace();    			
+
+    		try {
+    			// Thread.sleep(500);
+    		} catch(Exception ex) {
+    			ex.printStackTrace();
     		}
     	}
     }
-    
-    public static void handleInput(Selector selector, SelectionKey key) throws IOException {
 
-		if (key.isValid()) {
+	/**
+	 * 通道初始化
+	 * @param selector 多路选择器
+	 * @param serverSocketChannel 监听套接字通道
+	 */
+	private static void socketChannelInitial(Selector selector, ServerSocketChannel serverSocketChannel) {
+		try {
+			serverSocketChannel.configureBlocking(false); // 开启非阻塞模式
+			serverSocketChannel.socket().bind(new InetSocketAddress(PORT), 1024); // 驻守在 port端口
+			System.out.println("===accept 接受===");
+			serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT); // 绑定多路选择器+通道
+			System.out.printf("===服务器在%d端口守候===\n", PORT);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+
+	/**
+	 * 处理通道连接
+ 	 * @param selector 选择器
+	 * @param selectionKey 选择通道对应key
+	 * @throws IOException
+	 */
+    public static void handleInput(Selector selector, SelectionKey selectionKey) throws IOException {
+
+		if (selectionKey.isValid()) {
 			// 处理新接入的请求消息
-			if (key.isAcceptable()) { // 连接刚刚建立
+			if (selectionKey.isAcceptable()) { // 连接刚刚建立
 				// Accept the new connection
-				ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
-				SocketChannel sc = ssc.accept();
-				sc.configureBlocking(false);
+				ServerSocketChannel ssc = (ServerSocketChannel) selectionKey.channel();
+				SocketChannel socketChannel = ssc.accept();
+				socketChannel.configureBlocking(false);
 				// Add the new connection to the selector
-				sc.register(selector, SelectionKey.OP_READ);
+				System.out.println("reda 读取");
+				socketChannel.register(selector, SelectionKey.OP_READ);
+				System.out.println("==有一个新的连接==" + selectionKey.channel());
 			}
-			if (key.isReadable()) { // 可以读数据
+
+			/** 接受消息 */
+			if (selectionKey.isReadable()) { // 可以读数据
 				// Read the data
-				SocketChannel sc = (SocketChannel) key.channel();
+				SocketChannel sc = (SocketChannel) selectionKey.channel();
 				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
 				int readBytes = sc.read(readBuffer);
 				if (readBytes > 0) {
 					readBuffer.flip();
 					byte[] bytes = new byte[readBuffer.remaining()];
 					readBuffer.get(bytes);
+					/** request 接受到的消息 */
 					String request = new String(bytes, "UTF-8"); //接收到的输入
-					System.out.println("client said: " + request);
-					
-					String response = request + " 666";
-					doWrite(sc, response);
+
+					//System.out.printf("client %s \nsaid: %s\n" , selectionKey.channel(), request);
+
+					/**  格式：[id]：[message] */
+					String[] requests = request.split(":",2);
+					int id = Integer.parseInt(requests[0]);
+					String message = requests[1].trim().toString();
+					//System.out.printf("client (id = %d)said: %s\n" , id, requests[1]);
+
+					/** 记录客户的连接通道 */
+					if(ClientMap.containsValue(selectionKey) == false) { //新的通道连接
+						if (ClientMap.containsKey(id)) { // 之前注册过
+							System.out.printf("客户 %d 重新连接\n", id);
+						}else {
+							System.out.printf("客户 %d 初次登陆\n", id);
+						}
+						ClientMap.put(id, selectionKey);
+					}
+
+					/** 消息处理 */
+					messageHandel(id, message);
+
+					/** 接受消息 返回给客户端确认 */
+					doWrite(sc, "<accept>"); //  + System.getProperty("line.separator")
 				} else if (readBytes < 0) {
 					// 对端链路关闭
-					key.cancel();
+					selectionKey.cancel();
 					sc.close();
 				} else
 					; // 读到0字节，忽略
@@ -103,13 +148,142 @@ public class NioServer {
 		}
 	}
 
-	public static void doWrite(SocketChannel channel, String response) throws IOException {
+	/**
+	 * 处理接受的数据
+	 * @param message
+	 * @return  1：发送包的确认, 2：连接请求 3 数据包
+	 */
+	public static int messageHandel(int id, String message){
+		if(message.trim().equals("<accept>")){
+			System.out.printf("%d 发送成功", id);
+			return 1;
+		}else if(message.trim().equals("<request>")){
+			System.out.printf("客户 %d 连接已经建立\n", id);
+			return 2;
+		}else if(message.trim().equals("<shutdown>")){
+			// Todo 主动关闭连接
+			return 4;
+		}else{
+			System.out.printf("client %d said : %s\n",id, message);
+			return 3;
+		}
+	}
+
+	/**
+	 * @param socketChannel
+	 * @param response
+	 * @return -1: 通道连接断开， 1；数据已发送， -2：没有要发送的数据
+	 * @throws IOException
+	 */
+	public static int doWrite(SocketChannel socketChannel, String response) throws IOException{
 		if (response != null && response.trim().length() > 0) {
+
 			byte[] bytes = response.getBytes();
 			ByteBuffer writeBuffer = ByteBuffer.allocate(bytes.length);
+
+
 			writeBuffer.put(bytes);
 			writeBuffer.flip();
-			channel.write(writeBuffer);
+
+			try {
+
+				//System.out.println("状态：" + socketChannel.isConnected());
+				if (socketChannel.isConnected() == false){
+					System.out.printf("连接断开\n");
+					return -1;
+				}
+				socketChannel.write(writeBuffer);
+
+			}catch (ClosedChannelException e) {
+				return -1;
+			}
+
+			return 1;
+		}
+		return -2;
+	}
+
+	/**
+	 * 发送消息给 指定 客户端
+	 *  interval = 4 s
+	 */
+	@Override
+	public void run() {
+    	while (true) {
+			int id_key = 0;
+
+    		try {
+				Iterator<Integer> iterator = ClientMap.keySet().iterator();
+				while (iterator.hasNext()){
+					id_key = iterator.next();
+					if (ClientMap.get(id_key) != null){
+						/** 发送心跳包 */
+						int answer = messageSend(id_key,"<tick>");
+						if (answer == -1){
+							System.out.printf("客户端 %d 连接断开, 通道设为空\n", id_key);
+							ClientMap.get(id_key).channel().close();
+							ClientMap.put(id_key, null); // 通道设为空
+						}
+					}
+
+				}
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+
+		}
+
+	}
+
+	/**
+	 * 指定客户端发送消息
+	 * @param id 客户端 id
+	 * @param message 消息
+	 * @return -1: 通道连接断开， 1；数据已发送， -2：没有要发送的数据
+	 */
+	public static int messageSend(int id, String message) throws IOException{
+
+		int answer = 1;
+		if (ClientMap.containsKey(id) == true) {
+
+			SocketChannel sc = (SocketChannel) ClientMap.get(id).channel();
+			answer = doWrite(sc, message); //  + System.getProperty("line.separator")
+
+		}else {
+			System.out.println("没有此用户");
+		}
+		return  answer;
+
+	}
+
+
+
+	/**
+	 * 关闭通道连接
+	 * @param _clientSocket
+	 */
+	public void ShutDownClient(SocketChannel _clientSocket)
+	{
+		if(_clientSocket.isOpen())
+		{
+			try
+			{
+				//将连接的输入输出都关闭，而不是直接Close连接
+				_clientSocket.shutdownInput();
+				_clientSocket.shutdownOutput();
+				ClientMap.remove(_clientSocket);
+				System.out.println("客户端无响应：" + _clientSocket.socket().getPort());
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }
