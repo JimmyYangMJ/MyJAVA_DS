@@ -51,7 +51,7 @@ public class Main {
 			Students[i].setTel(temp);
 			list.add(Students[i]);
 		}
-		Collections.sort(list,new Comparator<Information>() {  // ÄäÃûÄÚ²¿Àà
+		Collections.sort(list,new Comparator<Information>() {  // åŒ¿åå†…éƒ¨ç±»
             @Override
             public int compare(Information o1, Information o2) {
                 return Integer.parseInt(o1.getBirthday())- Integer.parseInt(o2.getBirthday()); 

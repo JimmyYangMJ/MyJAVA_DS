@@ -1,5 +1,6 @@
 package com.java.JCF.Stack_Queue;
 
+
 import java.util.*;
 
 
@@ -28,25 +29,32 @@ public class priorityQueue {
         }
     }
     public static void main(String[] args) {
-        Queue<people> queue = new PriorityQueue<>();
-        queue.add(new people(3,4));
-        queue.add(new people(3,5));
-        queue.add(new people(4,6));
-        queue.add(new people(4,5));
-        Iterator<people> iterator = queue.iterator();
-        while(iterator.hasNext())
-            System.out.println(iterator.next().age );
-
-
-        while(!queue.isEmpty())
-            System.out.println(queue.peek().age +" "+ queue.poll().num );
-
-        String a = "as";
-        a.compareTo("as");
+        test1();
+//        Queue<people> queue = new PriorityQueue<>();
+//        queue.add(new people(3,4));
+//        queue.add(new people(3,5));
+//        queue.add(new people(4,6));
+//        queue.add(new people(4,5));
+//        Iterator<people> iterator = queue.iterator();
+//        while(iterator.hasNext())
+//            System.out.println(iterator.next().age );
+//
+//
+//        while(!queue.isEmpty())
+//            System.out.println(queue.peek().age +" "+ queue.poll().num );
+//
+//        String a = "as";
+//        a.compareTo("as");
     }
 
     public static void test1(){
-        Queue<Integer> queue = new PriorityQueue<>();
+        Queue<Integer> queue = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2-o1;
+            }
+        });
+
         queue.add(5);
         queue.add(1);
         queue.add(3);

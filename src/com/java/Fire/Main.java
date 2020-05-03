@@ -6,7 +6,7 @@ public class Main{
 	
 	public static void fireAttribute() {
 		File file = new File("image/score.txt");
-		// Ã»ÓĞimport Ê¹ÓÃjava.io.File
+		// æ²¡æœ‰import ä½¿ç”¨java.io.File
         System.out.println("Does it exit? " + file.exists());
         System.out.println("file has " + file.length() + " bytes");
         System.out.println("Can it be read? "+file.canRead());
@@ -16,7 +16,7 @@ public class Main{
         System.out.println("is it absolute? "+file.isAbsolute());
         System.out.println("is it hidden? "+file.isHidden());
         System.out.println("Absolute path is "+file.getAbsolutePath());
-        System.out.println("last modified on " + new java.util.Date(file.lastModified()));//·µ»Ø×îºóĞŞ¸ÄµÄÈÕÆÚºÍÊ±¼ä
+        System.out.println("last modified on " + new java.util.Date(file.lastModified()));//è¿”å›æœ€åä¿®æ”¹çš„æ—¥æœŸå’Œæ—¶é—´
 	}
 	
 	public static void main(String[] args){

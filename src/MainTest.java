@@ -1,9 +1,4 @@
 
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-import java.util.concurrent.locks.LockSupport;
-
-
 /**
  * 118. 杨辉三角 Pascal's Triangle
  * @author ymj
@@ -11,93 +6,77 @@ import java.util.concurrent.locks.LockSupport;
  */
 public class MainTest {
 
-    private static  int radius = 1;
-    private int count =2;
-
-     static Integer a = 10;
-
-    volatile static Object object = new Object();
-
-    class Inner {
-        public void visit() {
-            System.out.println("visit outer static  variable:" + radius);
-            System.out.println("visit outer   variable:" + count);
+    /** 汉诺塔问题 */
+    public static void process(int N, String from, String to, String help) {
+        if (N == 1){
+            System.out.println("Move 1 from " + from + " to " + to);
+        } else {
+            process(N-1, from, help, to);
+            System.out.println("Move " + N + " from " + from + " to " + to);
+            process(N-1, help, to, from);
         }
-    }
-
-
-    public static void main(String[] args) throws InterruptedException {
-        MainTest in = new MainTest();
-        Inner inner = in.new Inner();
-        a = 10;
-
-        Thread thread = new Thread(() -> {
-            LockSupport.park();
-            System.out.println(Thread.currentThread().getName() + "被唤醒");
-        });
-        thread.start();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        LockSupport.unpark(thread);
-
-        Thread a = new Thread(new test1());
-        a.start();
-
-        a = new Thread(new test2());
-        a.start();
-
-        a = new Thread(new test());
-        a.start();
-
-
 
     }
 
-}
-
-class test1 implements Runnable{
-
-    @Override
-    public void run() {
-        try {
-            MainTest.object.wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    /** 打印字符串的全部子序列 */
+    public static void printAllSub(char[] str, int index, String res){
+        if(index == str.length) {
+            System.out.println(res);
+            return;
         }
-        System.out.println("777777");
-
-
+        printAllSub(str, index + 1, res + String.valueOf(str[index]));
+        printAllSub(str,index +1, res);
     }
-}
-class test2 implements Runnable{
 
-    @Override
-    public void run() {
-            try {
-                MainTest.object.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    // todo 打印一个字符串的全部排列，要求不要出现重复的排列
 
-        System.out.println("666666");
+    // todo 生兔子问题
 
-    }
-}
-class test implements Runnable{
+    // todo 打印一个字符串的全部排列，要求不要出现重复的排列
 
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(5000);
-            MainTest.object.notify();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    /** 给你一个二维数组，二维数组中的每个数都是正数，要求从左上 角走到右下角，
+     * 每一步只能向右或者向下。沿途经过的数字要累 加起来。返回最小的路径和
+     */
+    public static int walk(int[][] matrix, int i, int j) {
+        if (i == matrix.length - 1 && j == matrix[0].length - 1) {
+            return matrix[i][j];
         }
-        System.out.println("5555555");
+        if (i == matrix.length - 1) {
+            return matrix[i][j] + walk(matrix, i, j + 1);
+        }
+        if (j == matrix[0].length - 1) {
+            return matrix[i][j] + walk(matrix, i + 1, j );
+        }
+        int right = walk(matrix, i, j + 1);
+        int down = walk(matrix,i + 1, j);
+        return matrix[i][j] + Math.min(right, down);
+    }
+    // todo 上述改为动态规划
 
+    /**
+     * 给你一个数组arr，和一个整数aim。如果可以任意选择arr中的 数字，能不能累加得到aim
+     * 返回true或者false
+     * 相关问题：背包··· ···
+     */
+    public static boolean isSum(int[] arr, int i,int sum, int aim) {
+        if(i == arr.length) {
+            System.out.println(sum);
+            return sum == aim;
+        }
+        return isSum(arr, i + 1, sum, aim) || isSum(arr, i + 1, sum + arr[i], aim);
+    }
+    // todo 上述改为动态规划
+
+    public static void main(String[] args) {
+       // process(3,"左", "中", "右");
+        // printAllSub("abc".toCharArray(), 0,"");
+
+//        int[][] m = { { 1, 3, 5, 9 }, { 8, 1, 3, 4 }, { 5, 0, 6, 1 }, { 8, 8, 4, 0 } };
+//        System.out.println(walk(m, 0, 0));
+
+        int[] arr = {2, 4, 8};
+        int aim = 12;
+        System.out.println(isSum(arr, 0, 0, aim));
 
     }
 }

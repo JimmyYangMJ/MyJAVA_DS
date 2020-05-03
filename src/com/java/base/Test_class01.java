@@ -52,24 +52,24 @@ public class Test_class01 implements Comparators{
 		System.out.println(s);
 	}
 	public static void main(String[] args) {
-		Staff[] staff = {new Staff(1,500,400,"Ö°¹¤1","female"), new Staff(2,400,600,"Ö°¹¤2","female"),new Staff(3,600,300,"Ö°¹¤3","male"), new Staff(4,800,200,"Ö°¹¤4","female")
-				, new Staff(5,500,700,"Ö°¹¤5","male")};
-		/****************Ê¹ÓÃComparatorÄäÃûÄÚ²¿Àà***********************/ 
+		Staff[] staff = {new Staff(1,500,400,"èŒå·¥1","female"), new Staff(2,400,600,"èŒå·¥2","female"),new Staff(3,600,300,"èŒå·¥3","male"), new Staff(4,800,200,"èŒå·¥4","female")
+				, new Staff(5,500,700,"èŒå·¥5","male")};
+		/****************ä½¿ç”¨ComparatoråŒ¿åå†…éƒ¨ç±»***********************/ 
 		ArrayList<Staff> list = new ArrayList<Staff>();
-		Staff staff1 = new Staff(1,500,400,"Ö°¹¤1","female");
-		Staff staff2 = new Staff(2,400,600,"Ö°¹¤2","female");
-		Staff staff3 = new Staff(3,600,300,"Ö°¹¤3","male");
-		Staff staff4 = new Staff(4,800,200,"Ö°¹¤4","female");
+		Staff staff1 = new Staff(1,500,400,"èŒå·¥1","female");
+		Staff staff2 = new Staff(2,400,600,"èŒå·¥2","female");
+		Staff staff3 = new Staff(3,600,300,"èŒå·¥3","male");
+		Staff staff4 = new Staff(4,800,200,"èŒå·¥4","female");
 		list.add(staff1);list.add(staff2);list.add(staff3);list.add(staff4);
-		list.add(new Staff(5,500,700,"Ö°¹¤5","male")); //»òÕßÖ±½ÓĞ´ÔÚÀïÃæ
+		list.add(new Staff(5,500,700,"èŒå·¥5","male")); //æˆ–è€…ç›´æ¥å†™åœ¨é‡Œé¢
 	
-        Collections.sort(list,new Comparator<Staff>() {  //Ê¹ÓÃComparatorÄäÃûÄÚ²¿Àà
+        Collections.sort(list,new Comparator<Staff>() {  //ä½¿ç”¨ComparatoråŒ¿åå†…éƒ¨ç±»
             @Override
             public int compare(Staff o1, Staff o2) {
-                return o1.getSumAchie()-o2.getSumAchie(); //ÒÔÉıĞò
+                return o1.getSumAchie()-o2.getSumAchie(); //ä»¥å‡åº
             }
         });
-        System.out.println("ÒÔÍÅÏÕÅÅĞòºó/PresonAscending:");
+        System.out.println("ä»¥å›¢é™©æ’åºå/PresonAscending:");
         for (Staff staffs : list) {
         	log(String.format("%d,%d,%d,%s,%s",staffs.getNumber(),staffs.getSumAchie(),
 					staffs.getPersonAchie(), staffs.getName(), staffs.getSex()));
@@ -85,7 +85,7 @@ public class Test_class01 implements Comparators{
 	}
 	
 	public void ShowStaff(Staff[] staff) {
-		log("±àºÅ,ÍÅÏÕ,¸öÏÕ,ĞÕÃû,ĞÔ±ğ");
+		log("ç¼–å·,å›¢é™©,ä¸ªé™©,å§“å,æ€§åˆ«");
 		for(int i = 0; i < number; i++) {
 			log(String.format("%d,%d,%d,%s,%s",staff[i].getNumber(),staff[i].getSumAchie(),
 					staff[i].getPersonAchie(), staff[i].getName(), staff[i].getSex()));
