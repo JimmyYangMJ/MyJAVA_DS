@@ -1,0 +1,12 @@
+8 10 0 1
+2 1 5 1 1 1 1 3
+0 4 1
+0 3 2
+0 7 1
+4 5 1
+3 2 1
+7 3 1
+3 6 1
+2 1 1
+1 6 1
+2 5 1Event{header=EventHeaderV4{timestamp=1587345946000, eventType=FORMAT_DESCRIPTION, serverId=1, headerLength=19, dataLength=100, nextPosition=123, flags=1}, data=FormatDescriptionEventData{binlogVersion=4, serverVersion='5.7.29-log', headerLength=19}}Event{header=EventHeaderV4{timestamp=1587345947000, eventType=PREVIOUS_GTIDS, serverId=1, headerLength=19, dataLength=12, nextPosition=154, flags=128}, data=PreviousGtidSetEventData {gtidSet=''}}Event{header=EventHeaderV4{timestamp=1587388595000, eventType=ANONYMOUS_GTID, serverId=1, headerLength=19, dataLength=46, nextPosition=219, flags=0}, data=null}Event{header=EventHeaderV4{timestamp=1587388595000, eventType=QUERY, serverId=1, headerLength=19, dataLength=53, nextPosition=291, flags=8}, data=QueryEventData{threadId=5, executionTime=0, errorCode=0, database='shop', sql='BEGIN?=?'}}Event{header=EventHeaderV4{timestamp=1587388595000, eventType=TABLE_MAP, serverId=1, headerLength=19, dataLength=39, nextPosition=349, flags=0}, data=TableMapEventData{tableId=108, database='shop', table='ausertable', columnTypes=15, 15, columnMetadata=150, 150, columnNullability={}}}

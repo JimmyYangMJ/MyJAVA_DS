@@ -4,12 +4,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * Ö´ĞĞ·şÎñÆ÷
+ * æ‰§è¡ŒæœåŠ¡å™¨
  *
  */
 public class Server {
 	
-	//Ïß³Ì³Ø
+	//çº¿ç¨‹æ± 
 	private ThreadPoolExecutor executor;
 	
 	public Server(){
@@ -17,10 +17,10 @@ public class Server {
 		//executor=(ThreadPoolExecutor)Executors.newFixedThreadPool(5);
 	}
 	
-	//ÏòÏß³Ì³ØÌá½»ÈÎÎñ
+	//å‘çº¿ç¨‹æ± æäº¤ä»»åŠ¡
 	public void submitTask(Task task){
 		System.out.printf("Server: A new task has arrived\n");
-		executor.execute(task); //Ö´ĞĞ  ÎŞ·µ»ØÖµ
+		executor.execute(task); //æ‰§è¡Œ  æ— è¿”å›å€¼
 		
 		System.out.printf("Server: Pool Size: %d\n",executor.getPoolSize());
 		System.out.printf("Server: Active Count: %d\n",executor.getActiveCount());

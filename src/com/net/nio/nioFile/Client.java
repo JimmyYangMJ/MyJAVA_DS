@@ -74,20 +74,16 @@ public class Client {
                     System.out.println("客户端连接成功");
                 }else if(key.isReadable()){ //有可读数据事件。
                     SocketChannel channel = (SocketChannel)key.channel();
-                    ByteBuffer byteBuffer = ByteBuffer.allocate(10);
-                    int readLength = channel.read(byteBuffer);
-                    byteBuffer.flip();
-                    int count = 0;
-                    File file = new File("D:\\master-bin.000005");
+                    ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+
+                    File file = new File("D:\\test3.txt");
                     if(!file.exists()) file.createNewFile();
                     FileOutputStream fe =new FileOutputStream(file,true);//可追加写
                     FileChannel outFileChannel = fe.getChannel();
-                    while(readLength != -1){ //分多次读取
-                        count = count+readLength;
-                        System.out.println("count="+count+" readLength="+readLength);
-                        readLength = channel.read(byteBuffer);//将socketChannel数据读到byteBuffer
+                    while(channel.read(byteBuffer) > 0){ //分多次读取
+                        System.out.println(new String(byteBuffer.array(), "UTF-8"));
                         byteBuffer.flip();
-                        outFileChannel.write(byteBuffer);//byteBuffer数据写到FileChannel
+                        outFileChannel.write(byteBuffer);//byteBuffer转换为数据写到FileChannel
                         fe.flush();
                         byteBuffer.clear();
                     }

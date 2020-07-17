@@ -2,18 +2,21 @@ package com.java.Thread.test05.threadgroup;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * é€šè¿‡çº¿ç¨‹ç»„ ç®¡ç†çº¿ç¨‹
+ */
 public class Main {
 
 	public static void main(String[] args) {
 
-		// ´´½¨Ïß³Ì×é
+		// åˆ›å»ºçº¿ç¨‹ç»„
 		ThreadGroup threadGroup = new ThreadGroup("Searcher");
 		Result result=new Result();
 
-		// ´´½¨Ò»¸öÈÎÎñ£¬10¸öÏß³ÌÍê³É
+		// åˆ›å»ºä¸€ä¸ªä»»åŠ¡ï¼Œ10ä¸ªçº¿ç¨‹å®Œæˆ
 		Searcher searchTask=new Searcher(result);
 		for (int i=0; i<10; i++) {
-			Thread thread=new Thread(threadGroup, searchTask);
+			Thread thread=new Thread(threadGroup, searchTask); // å°†çº¿ç¨‹åŠ å…¥çº¿ç¨‹ç»„
 			thread.start();
 			try {
 				TimeUnit.SECONDS.sleep(1);
@@ -21,21 +24,21 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("========»ªÀöÀö0=======");
+		System.out.println("========åä¸½ä¸½0=======");
 		
-		// ²é¿´Ïß³Ì×éÏûÏ¢
-		System.out.printf("active Ïß³ÌÊıÁ¿: %d\n",threadGroup.activeCount());
-		System.out.printf("Ïß³Ì×éĞÅÏ¢Ã÷Ï¸\n");
+		// æŸ¥çœ‹çº¿ç¨‹ç»„æ¶ˆæ¯
+		System.out.printf("active çº¿ç¨‹æ•°é‡: %d\n",threadGroup.activeCount());
+		System.out.printf("çº¿ç¨‹ç»„ä¿¡æ¯æ˜ç»†\n");
 		threadGroup.list();
-		System.out.println("========»ªÀöÀö1=======");
+		System.out.println("========åä¸½ä¸½1=======");
 
-		// ±éÀúÏß³Ì×é
+		// éå†çº¿ç¨‹ç»„
 		Thread[] threads=new Thread[threadGroup.activeCount()];
 		threadGroup.enumerate(threads);
 		for (int i=0; i<threadGroup.activeCount(); i++) {
 			System.out.printf("Thread %s: %s\n",threads[i].getName(),threads[i].getState());
 		}
-		System.out.println("========»ªÀöÀö2=======");
+		System.out.println("========åä¸½ä¸½2=======");
 
 		// Wait for the finalization of the Threadds
 		waitFinish(threadGroup);

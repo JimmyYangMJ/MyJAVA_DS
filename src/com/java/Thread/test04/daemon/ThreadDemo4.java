@@ -18,7 +18,7 @@ public class ThreadDemo4
 		while(true)
 		{
 			System.out.println("TestThread4" + 
-			"¡¡is running");
+			"ã€€is running");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

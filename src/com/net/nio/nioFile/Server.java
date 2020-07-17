@@ -71,18 +71,19 @@ public class Server {
 
                 }else if(key.isWritable()){
                     SocketChannel socketChannel = (SocketChannel)key.channel();
-                    FileInputStream file = new FileInputStream("D:\\master-bin.000004");
+                    FileInputStream file = new FileInputStream("D:\\test.txt");
+
                     FileChannel fileChannel = file.getChannel();
                     //500M  堆外内存
-                    ByteBuffer byteBuffer = ByteBuffer.allocateDirect(524288000);
-                    while(fileChannel.position()<fileChannel.size()){
+                    ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4);
+                    while(fileChannel.position() < fileChannel.size()){
+                        System.out.println("position:"+ fileChannel.position() +" size:"+ fileChannel.size());
                         fileChannel.read(byteBuffer);//从文件通道读取到byteBuffer
                         byteBuffer.flip();
-                        while(byteBuffer.hasRemaining()){
+                        while(byteBuffer.hasRemaining()){ // 读到数据了吗
                             socketChannel.write(byteBuffer);//写入通道
                         }
                         byteBuffer.clear();//清理byteBuffer
-                        System.out.println(fileChannel.position()+" "+fileChannel.size());
                     }
                     System.out.println("结束写操作");
                     socketChannel.close();

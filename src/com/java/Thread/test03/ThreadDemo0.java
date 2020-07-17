@@ -1,7 +1,7 @@
 package com.java.Thread.test03;
 
 /**
- * ¶àÏß³ÌĞÅÏ¢¹²ÏíÎÊÌâ
+ * å¤šçº¿ç¨‹ä¿¡æ¯å…±äº«é—®é¢˜
  */
 public class ThreadDemo0
 {
@@ -15,11 +15,11 @@ public class ThreadDemo0
 }
 
 /**
- * ÂòÃÅÆ±ÎÊÌâ
+ * ä¹°é—¨ç¥¨é—®é¢˜
  */
 class TestThread0 extends Thread {
-	//private int tickets=100;           //Ã¿¸öÏß³ÌÂô100ÕÅ£¬Ã»ÓĞ¹²Ïí
-	private static int tickets=100;  //static±äÁ¿ÊÇ¹²ÏíµÄ£¬ËùÓĞµÄÏß³Ì¹²Ïí
+	//private int tickets=100;           //æ¯ä¸ªçº¿ç¨‹å–100å¼ ï¼Œæ²¡æœ‰å…±äº«
+	private static int tickets=100;  //staticå˜é‡æ˜¯å…±äº«çš„ï¼Œæ‰€æœ‰çš„çº¿ç¨‹å…±äº«
 	public void run() {
 		while(true)
 		{

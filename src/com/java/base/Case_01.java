@@ -4,7 +4,7 @@ import java.util.Random;
 
 public strictfp class Case_01 {
 	
-	//strictfp ÑÏ¸ñ¸¡µãÊıÔËËã£¬²»ÒÀÀµÓÚ»úÆ÷
+	//strictfp ä¸¥æ ¼æµ®ç‚¹æ•°è¿ç®—ï¼Œä¸ä¾èµ–äºæœºå™¨
 	public static void main(String[] arg) {
 		
 		
@@ -22,9 +22,9 @@ public strictfp class Case_01 {
 		System.out.println(Math.max(5, 6));
 		System.out.println(StrictMath.max(6, 7)); 
 		System.out.println((char)(75));
-		System.out.println(Math.toIntExact(456321L));  // ÎŞ·¨´Ólong ×ªÎªint »á±¨Òì³£
+		System.out.println(Math.toIntExact(456321L));  // æ— æ³•ä»long è½¬ä¸ºint ä¼šæŠ¥å¼‚å¸¸
 		
-		System.out.printf("%,+.2f", -30D);  // ÕıÊı»áÏÔÊ¾+ºÅ
+		System.out.printf("%,+.2f", -30D);  // æ­£æ•°ä¼šæ˜¾ç¤º+å·
 		
 		int i = 0;
 		outer:

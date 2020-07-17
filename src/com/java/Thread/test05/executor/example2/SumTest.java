@@ -12,21 +12,22 @@ public class SumTest {
 
 	public static void main(String[] args) {
 		
-		// Ö´ĞĞÏß³Ì³Ø
+		// æ‰§è¡Œçº¿ç¨‹æ± 
 		ThreadPoolExecutor executor=(ThreadPoolExecutor)Executors.newFixedThreadPool(4);
 		
 		List<Future<Integer>> resultList=new ArrayList<>();
 
-		//Í³¼Æ1-1000×ÜºÍ£¬·Ö³É10¸öÈÎÎñ¼ÆËã£¬Ìá½»ÈÎÎñ
+		//ç»Ÿè®¡1-1000æ€»å’Œï¼Œåˆ†æˆ10ä¸ªä»»åŠ¡è®¡ç®—ï¼Œæäº¤ä»»åŠ¡
 		for (int i=0; i<10; i++){
 			SumTask calculator=new SumTask(i*100+1, (i+1)*100);
+
 			Future<Integer> result=executor.submit(calculator);
 			resultList.add(result);
 		}
 		
-		// Ã¿¸ô50ºÁÃë£¬ÂÖÑ¯µÈ´ı10¸öÈÎÎñ½áÊø
+		// æ¯éš”50æ¯«ç§’ï¼Œè½®è¯¢ç­‰å¾…10ä¸ªä»»åŠ¡ç»“æŸ
 		do {
-			System.out.printf("Main: ÒÑ¾­Íê³É¶àÉÙ¸öÈÎÎñ: %d\n",executor.getCompletedTaskCount());
+			System.out.printf("Main: å·²ç»å®Œæˆå¤šå°‘ä¸ªä»»åŠ¡: %d\n",executor.getCompletedTaskCount());
 			for (int i=0; i<resultList.size(); i++) {
 				Future<Integer> result=resultList.get(i);
 				System.out.printf("Main: Task %d: %s\n",i,result.isDone());
@@ -38,7 +39,7 @@ public class SumTest {
 			}
 		} while (executor.getCompletedTaskCount()<resultList.size());
 		
-		// ËùÓĞÈÎÎñ¶¼ÒÑ¾­½áÊøÁË£¬×ÛºÏ¼ÆËã½á¹û		
+		// æ‰€æœ‰ä»»åŠ¡éƒ½å·²ç»ç»“æŸäº†ï¼Œç»¼åˆè®¡ç®—ç»“æœ		
 		int total = 0;
 		for (int i=0; i<resultList.size(); i++) {
 			Future<Integer> result=resultList.get(i);
@@ -52,9 +53,9 @@ public class SumTest {
 				e.printStackTrace();
 			}
 		}
-		System.out.printf("1-1000µÄ×ÜºÍ:" + total);
+		System.out.printf("1-1000çš„æ€»å’Œ:" + total);
 		
-		// ¹Ø±ÕÏß³Ì³Ø
+		// å…³é—­çº¿ç¨‹æ± 
 		executor.shutdown();
 	}
 }

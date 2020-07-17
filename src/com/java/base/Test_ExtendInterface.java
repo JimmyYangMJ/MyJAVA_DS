@@ -126,7 +126,7 @@ class C extends B{}
 class D extends B{}
 
 public  class Test_ExtendInterface{
-	
+
 	private static int d;
 
 	public Test_ExtendInterface(int h) {
@@ -156,6 +156,7 @@ public  class Test_ExtendInterface{
 
 		/** 向上造型*/
 		A a2 = new B(3);
+
 		System.out.printf("父类A中 a2.moblie = %d, a2.b2 = %d\n", a2.moblie, a2.b2);  // 对象中没有子类B的bd变量， 即没有 a2.bd
 		a2.print();
 

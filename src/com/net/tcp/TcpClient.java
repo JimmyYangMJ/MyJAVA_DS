@@ -18,11 +18,11 @@ public class TcpClient implements Runnable{
 			/** 先开启 */
 			Socket socket = new Socket(InetAddress.getByName("192.168.179.182"), 8000);
 
-			//鍚屼竴涓�氶亾锛屾湇鍔＄鐨勮緭鍑烘祦灏辨槸瀹㈡埛绔殑杈撳叆娴侊紱鏈嶅姟绔殑杈撳叆娴佸氨鏄鎴风鐨勮緭鍑烘祦
-			InputStream ips = socket.getInputStream();    /** 1. 寮�鍚�氶亾鐨勮緭鍏ユ祦 */
+			//鍚屼竴涓?氶亾锛屾湇鍔＄鐨勮緭鍑烘祦灏辨槸瀹㈡埛绔殑杈撳叆娴侊紱鏈嶅姟绔殑杈撳叆娴佸氨鏄鎴风鐨勮緭鍑烘祦
+			InputStream ips = socket.getInputStream();    /** 1. 寮?鍚?氶亾鐨勮緭鍏ユ祦 */
 			brNet = new BufferedReader(new InputStreamReader(ips));
 
-			OutputStream ops = socket.getOutputStream();  /** 2. 寮�鍚�氶亾鐨勮緭鍑烘祦 */
+			OutputStream ops = socket.getOutputStream();  /** 2. 寮?鍚?氶亾鐨勮緭鍑烘祦 */
 			dos = new DataOutputStream(ops);
 
 			BufferedReader brKey = new BufferedReader(new InputStreamReader(System.in));

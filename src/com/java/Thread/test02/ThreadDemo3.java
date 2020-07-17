@@ -4,15 +4,15 @@ public class ThreadDemo3 {
 	public static void main(String args[])
 	{
 		//new TestThread3().start();
-		//Runnable¶ÔÏó±ØĞë·ÅÔÚÒ»¸öThreadÀàÖĞ²ÅÄÜÔËĞĞ
-		TestThread3 tt= new TestThread3();//´´½¨TestThreadÀàµÄÒ»¸öÊµÀı
-		Thread t= new Thread(tt);//´´½¨Ò»¸öThreadÀàµÄÊµÀı
-		t.start();//Ê¹Ïß³Ì½øÈëRunnable×´Ì¬
+		//Runnableå¯¹è±¡å¿…é¡»æ”¾åœ¨ä¸€ä¸ªThreadç±»ä¸­æ‰èƒ½è¿è¡Œ
+		TestThread3 tt= new TestThread3();//åˆ›å»ºTestThreadç±»çš„ä¸€ä¸ªå®ä¾‹
+		Thread t= new Thread(tt);//åˆ›å»ºä¸€ä¸ªThreadç±»çš„å®ä¾‹
+		t.start();//ä½¿çº¿ç¨‹è¿›å…¥RunnableçŠ¶æ€
 		while(true)
 		{
 			System.out.println("main thread is running");
 			try {
-				Thread.sleep(1000); //1000ºÁÃë
+				Thread.sleep(1000); //1000æ¯«ç§’
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -22,7 +22,8 @@ public class ThreadDemo3 {
 }
 class TestThread3 implements Runnable //extends Thread
 {
-	//Ïß³ÌµÄ´úÂë¶Î£¬µ±Ö´ĞĞstart()Ê±£¬Ïß³Ì´Ó´Ë³ö¿ªÊ¼Ö´ĞĞ
+	//çº¿ç¨‹çš„ä»£ç æ®µï¼Œå½“æ‰§è¡Œstart()æ—¶ï¼Œçº¿ç¨‹ä»æ­¤å‡ºå¼€å§‹æ‰§è¡Œ
+	@Override
 	public void run()
 	{
 		while(true)
@@ -30,7 +31,7 @@ class TestThread3 implements Runnable //extends Thread
 			System.out.println(Thread.currentThread().getName() +
 			" is running");
 			try {
-				Thread.sleep(1000); //1000ºÁÃë
+				Thread.sleep(1000); //1000æ¯«ç§’
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

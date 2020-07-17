@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 
 public class SumTask implements Callable<Integer> {
-	//¶¨ÒåÃ¿¸öÏß³Ì¼ÆËãµÄÇø¼ä
+	//å®šä¹‰æ¯ä¸ªçº¿ç¨‹è®¡ç®—çš„åŒºé—´
 	private int startNumber;
 	private int endNumber;
 	
@@ -16,11 +16,9 @@ public class SumTask implements Callable<Integer> {
 	@Override
 	public Integer call() throws Exception {
 		int sum = 0;
-		for(int i=startNumber; i<=endNumber; i++)
-		{
+		for(int i=startNumber; i<=endNumber; i++) {
 			sum = sum + i;
 		}
-		
 		Thread.sleep(new Random().nextInt(1000));
 		
 		System.out.printf("%s: %d\n",Thread.currentThread().getName(),sum);

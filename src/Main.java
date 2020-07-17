@@ -1,133 +1,37 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 
-import java.util.HashMap;
-import java.util.Scanner;
-
-
-/**
- * °¢Àï°Í°ÍÃæÊÔ 1 É«×ÓÎÊÌâ
-     ÑùÀı
-     1
-     5
-     S###.
-     E..#.
-     #.##.
-     #.#..
-     ###..
- */
 public class Main {
-    static Scanner cin = new Scanner(System.in);
-
-    public static HashMap<Integer, HashMap<Integer, Integer>> map;
-    public static void main(String[] args) {
-        int t = cin.nextInt();
-        while (t-- > 0){
-            int n = cin.nextInt();
-            cin.nextLine();
-            char[][] m = new char[n][n];
-            int h = 0,l = 0;
-            for (int i = 0; i < n; i++) {
-                String temp = cin.nextLine();
-                if (temp.contains("S")){
-                    h = i;
-                }
-                m[i] = temp.toCharArray();
-            }
-            for (int i = 0; i <n; i++) {
-                if (m[h][i] == 'S'){
-                    l = i;
-                    break;
+    public static void createFongImg(String path){
+        String base = "æˆ‘çˆ±ä½ ";
+        try{
+            BufferedImage image = ImageIO.read(new File(path));
+            BufferedImage newImage = new BufferedImage(image.getWidth(),image.getHeight(),image.getType());
+            Graphics2D graphics2D = (Graphics2D) newImage.getGraphics();
+            graphics2D.setFont(new Font("å®‹ä½“",Font.BOLD,12));
+            int index = 0;
+            for(int y = 0; y < image.getHeight(); y += 12){
+                for (int x = 0; x < image.getWidth(); x += 12){
+                    int pxcolor = image.getRGB(x,y);
+                    int r = (pxcolor & 0xff0000) >> 16,
+                            g = (pxcolor & 0xff00) >> 8,
+                            b = pxcolor & 0xff;
+                    graphics2D.setColor(new Color(r, g, b));
+                    graphics2D.drawString(String.valueOf(base.charAt(index % base.length())), x, y);
+                    index++;
                 }
             }
-            // 1up 2down 3left 4right
-            map = new HashMap<>();
-            init();
-            int next;
-            int b = 6;
-            while (true){
-                m[h][l] = Integer.toString(b).charAt(0); // ¸üĞÂµ±Ç°
-                next = find(m, h, l, n); // ÏÂÒ»²½·½Ïò
-                // ÏÂÒ»¸öÎ»ÖÃ
-                if (next < 0) {
-                    next *= -1;
-                    b = map.get(b).get(next); // ÏÂÒ»¸öµ×²¿
-                    if (next == 1) h--;
-                    if (next == 2) h++;
-                    if (next == 3) l--;
-                    if (next == 4) l++;
-                    m[h][l] = Integer.toString(b).charAt(0); // ¸üĞÂµ±Ç°
-                    break;
-                }
-                // ÏÂÒ»²½Î»ÖÃ
-                if (next == 1) h--;
-                if (next == 2) h++;
-                if (next == 3) l--;
-                if (next == 4) l++;
-                b = map.get(b).get(next); // ÏÂÒ»¸öµ×²¿
-            }
-            print(m, n);
+            ImageIO.write(newImage, "JPG", new FileOutputStream("D:\\temp.jpg"));
+        }catch (Exception e){
+            e.printStackTrace();
         }
+    };
+    public static void main(String args[]){
+        Main.createFongImg("D:\\girl.jpg");
+        System.out.println("OK");
     }
-
-    /** ´òÓ¡µ±Ç°µØÍ¼*/
-    private static void print(char[][] m,int n) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++){
-                System.out.print(m[i][j]);
-            }
-            System.out.println();
-        }
-    }
-
-    /**  ³õÊ¼»¯É¸×Ó·½Ïò */
-    private static void init() {
-        HashMap<Integer, Integer> map1 = new HashMap<>();
-        map1.put(1,3);map1.put(2, 4);
-        map1.put(3, 5);map1.put(4, 4);map.put(1,map1);
-
-        map1 = new HashMap<>();
-        map1.put(1, 4);map1.put(2, 3);
-        map1.put(3, 6);map1.put(4, 1);map.put(2,map1);
-
-        map1 = new HashMap<>();
-        map1.put(1,6);map1.put(2, 1);
-        map1.put(3, 5);map1.put(4, 2);map.put(3,map1);
-
-        map1 = new HashMap<>();
-        map1.put(1,1);map1.put(2, 6);
-        map1.put(3, 5);map1.put(4, 2);map.put(4,map1);
-
-        map1 = new HashMap<>();
-        map1.put(1,4);map1.put(2, 3);
-        map1.put(3, 1);map1.put(4, 6);map.put(5,map1);
-
-        map1 = new HashMap<>();
-        map1.put(1, 4);map1.put(2, 3);
-        map1.put(3, 5);map1.put(4, 2);map.put(6,map1);
-    }
-
-    /**  ÕÒµ½ ×ø±ê£¨h,l£©ÏÂÒ»²½ µÄ·½Ïò
-     *  1-up 2-down 3-left 4-right
-     */
-    public static int find(char[][] m, int h, int l,int n) {
-        n -= 1;
-        if (h > 0 && ( m[h-1][l] == '#' ||  m[h-1][l] == 'E' )){
-            if (m[h-1][l] == 'E') return -1;
-            return 1;
-        }
-        if (l < n && ( m[h][l+1] == '#'||  m[h][l+1] == 'E' )){
-            if (m[h][l+1] == 'E') return -4;
-            return 4;
-        }
-        if (h < n && ( m[h+1][l] == '#'||  m[h+1][l] == 'E' )){
-            if (m[h+1][l] == 'E') return -2;
-            return 2;
-        }
-        if (l > 0 && ( m[h][l-1] == '#'||  m[h][l-1] == 'E' )){
-            if ( m[h][l-1] == 'E') return -3;
-            return 3;
-        }
-        return 0;
-
-    }
-
 }
+

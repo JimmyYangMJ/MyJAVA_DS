@@ -15,15 +15,15 @@ public class Searcher implements Runnable {
 	@Override
 	public void run() {
 		String name=Thread.currentThread().getName();
-		System.out.printf("Thread %s: 启动\n",name);
+		System.out.printf("Thread %s: 鍚姩\n",name);
 		try {
 			doTask();
 			result.setName(name);
 		} catch (InterruptedException e) {
-			System.out.printf("Thread %s: 被中断\n",name);
+			System.out.printf("Thread %s: 琚腑鏂璡n",name);
 			return;
 		}
-		System.out.printf("Thread %s: 完成\n",name);
+		System.out.printf("Thread %s: 瀹屾垚\n",name);
 	}
 	
 	private void doTask() throws InterruptedException {

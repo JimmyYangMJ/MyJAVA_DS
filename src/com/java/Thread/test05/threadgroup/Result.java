@@ -1,7 +1,7 @@
 package com.java.Thread.test05.threadgroup;
 
 /**
- * ËÑË÷½á¹ûÀà
+ * æœç´¢ç»“æœç±»
  *
  */
 public class Result {

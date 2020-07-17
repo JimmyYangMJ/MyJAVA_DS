@@ -10,6 +10,9 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
+/**
+ * @Mod
+ */
 public class Test {
      private Logger logger=Logger.getLogger(this.getClass());
 

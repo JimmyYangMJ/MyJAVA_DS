@@ -10,7 +10,7 @@ public class Main {
 		for (int i=0; i<100; i++){
 			Task task=new Task("Task "+i);
 			Thread.sleep(10);
-			server.submitTask(task);
+			server.submitTask(task); // 将线程交给线程池完成
 		}		
 		server.endServer();
 	}

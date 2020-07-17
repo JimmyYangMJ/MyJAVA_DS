@@ -7,7 +7,7 @@ import java.util.Queue;
 
 /**
  * @author ymj
- * @Date£∫ 2019/12/17 16:12
+ * @DateÔºö 2019/12/17 16:12
  */
 public class Test {
     static class demo {
@@ -27,7 +27,7 @@ public class Test {
         Queue<demo> queue = new PriorityQueue<>(new Comparator<demo>() {
             @Override
             public int compare(demo o1, demo o2) {
-                return  o2.a - o1.a;// –° -- ¥Û
+                return  o2.a - o1.a;// Â∞è -- Â§ß
             }
         });
 

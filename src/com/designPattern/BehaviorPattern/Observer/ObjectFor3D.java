@@ -7,7 +7,7 @@ public class ObjectFor3D implements Subject {
 
     private List<Observer> observers = new ArrayList<Observer>();
     /**
-     * 3D²ÊÆ±µÄºÅÂë
+     * 3Då½©ç¥¨çš„å·ç 
      */
     private String msg;
 
@@ -34,7 +34,7 @@ public class ObjectFor3D implements Subject {
     }
 
     /**
-     * Ö÷Ìâ¸üĞÂÏûÏ¢
+     * ä¸»é¢˜æ›´æ–°æ¶ˆæ¯
      *
      * @param msg
      */

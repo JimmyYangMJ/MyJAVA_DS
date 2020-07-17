@@ -11,7 +11,7 @@ public class ThreadDemo3 {
 }
 
 class TestThread3 implements Runnable {
-	private volatile int tickets = 100; // 多个 线程在共享的
+	private volatile int tickets = 100; // 澶氫釜 绾跨▼鍦ㄥ叡浜殑
 	String str = new String("");
 
 	public void run() {
@@ -29,7 +29,7 @@ class TestThread3 implements Runnable {
 
 	}
 
-	public  void sale() { // 同步函数
+	public  void sale() { // 鍚屾鍑芥暟
 		if (tickets > 0) {
 			System.out.println(Thread.currentThread().getName() + " is saling ticket " + tickets--);
 		}

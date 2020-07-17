@@ -2,7 +2,7 @@ package com.java.annotation;
 
 import java.lang.annotation.*;
 
-/**定义限额注解*/
+/**瀹氫箟闄愰娉ㄨВ*/
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

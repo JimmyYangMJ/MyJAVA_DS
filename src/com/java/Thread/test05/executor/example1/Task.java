@@ -3,7 +3,7 @@ package com.java.Thread.test05.executor.example1;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 /**
- * Task ÈÎÎñÀà
+ * Task ä»»åŠ¡ç±»
  * @author Tom
  *
  */

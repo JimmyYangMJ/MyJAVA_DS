@@ -14,6 +14,11 @@ public class NioServer implements Runnable{
 
 	private static final int PORT = 8001;
 
+	/** 接收消息的类型
+	 * 1：心跳包返回的确认, 2：连接请求 3 命令数据包  -5. 客户端将要发送（Mysql日志）文件
+	 * todo
+	 */
+	private static int messageReceivedType = 0;
 
     public static void main(String[] args) throws IOException {
 
@@ -133,6 +138,7 @@ public class NioServer implements Runnable{
 				// Read the data
 				SocketChannel sc = (SocketChannel) selectionKey.channel();
 				ByteBuffer readBuffer = ByteBuffer.allocate(1024);
+
 				int readBytes = sc.read(readBuffer);
 				if (readBytes > 0) {
 					readBuffer.flip();
@@ -141,13 +147,11 @@ public class NioServer implements Runnable{
 					/** request 接受到的消息 */
 					String request = new String(bytes, "UTF-8"); //接收到的输入
 
-					//System.out.printf("client %s \nsaid: %s\n" , selectionKey.channel(), request);
-
 					/**  格式：[id]：[message] */
 					String[] requests = request.split(":",2);
 					int id = Integer.parseInt(requests[0]);
 					String message = requests[1].trim().toString();
-					//System.out.printf("client (id = %d)said: %s\n" , id, requests[1]);
+
 
 					/** 记录客户的连接通道 */
 					if(ClientMap.containsValue(selectionKey) == false) { //新的通道连接
@@ -159,8 +163,8 @@ public class NioServer implements Runnable{
 						ClientMap.put(id, selectionKey);
 					}
 
-					/** 消息处理 */
-					messageHandel(id, message);
+					/** 消息处理, 返回消息的类型 */
+					messageReceivedType = messageHandel(id, message);
 
 					/** 接受消息 返回给客户端确认 */
 					doWrite(sc, "<accept>"); //  + System.getProperty("line.separator")
@@ -168,8 +172,10 @@ public class NioServer implements Runnable{
 					// 对端链路关闭
 					selectionKey.cancel();
 					sc.close();
-				} else
+				} else {
 					; // 读到0字节，忽略
+				}
+
 			}
 		}
 	}
@@ -177,7 +183,7 @@ public class NioServer implements Runnable{
 	/**
 	 * 处理接受的数据
 	 * @param message
-	 * @return  1：发送包的确认, 2：连接请求 3 数据包
+	 * @return  1：心跳包返回的确认, 2：连接请求 3 数据包 5. 客户端将要发送文件
 	 */
 	public static int messageHandel(int id, String message){
 		if(message.trim().equals("<accept>")){
@@ -189,6 +195,9 @@ public class NioServer implements Runnable{
 		}else if(message.trim().equals("<shutdown>")){
 			// Todo 主动关闭连接
 			return 4;
+		}else if(message.trim().equals("<file>")){
+			// todo
+			return 5;
 		}else{
 			System.out.printf("client %d said : %s\n",id, message);
 			return 3;
