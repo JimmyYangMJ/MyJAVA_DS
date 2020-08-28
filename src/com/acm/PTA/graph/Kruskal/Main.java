@@ -1,21 +1,21 @@
-package com.PTA.graph.Kruskal;
+package com.acm.PTA.graph.Kruskal;
 
 import java.util.*;
 
 /**
- * Ëã·¨£º ×îÐ¡Éú³ÉÊ÷  Kruskal
- * ÓÅÏÈ¶ÓÁÐ£¨×îÐ¡¶Ñ£©
+ * ï¿½ã·¨ï¿½ï¿½ ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Kruskal
+ * ï¿½ï¿½ï¿½È¶ï¿½ï¿½Ð£ï¿½ï¿½ï¿½Ð¡ï¿½Ñ£ï¿½
  */
 public class Main {
 
     static Scanner cin = new Scanner(System.in);
     static int Nv, Ne;
-    static Queue<Edge> edges; // ±ß¼¯ºÏ
+    static Queue<Edge> edges; // ï¿½ß¼ï¿½ï¿½ï¿½
     static int[] s;
 
     static class Edge implements Comparable<Edge> {
         int v1, v2;
-        int w; // È¨ÖØ
+        int w; // È¨ï¿½ï¿½
         Edge(int v1, int v2, int w){
             this.v1 = v1;
             this.v2 = v2;
@@ -31,10 +31,10 @@ public class Main {
         Nv = cin.nextInt();
         Ne = cin.nextInt();
         edges = new PriorityQueue<>();
-        if(Ne < Nv - 1) { // ±ßÊý²»¹»
+        if(Ne < Nv - 1) { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             System.out.println("-1");
         }else {
-            for (int i = 0; i < Ne; i++) { // ÊÕ¼¯Ã¿Ò»Ìõ±ß
+            for (int i = 0; i < Ne; i++) { // ï¿½Õ¼ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½
                 int from = cin.nextInt();
                 int to =cin.nextInt();
                 int w = cin.nextInt();
@@ -46,37 +46,37 @@ public class Main {
     }
 
     static void kruskal() {
-        int edgCount = 0; // Éú³ÉÊ÷¼ÆÊý
-        int cost = 0; // Éú³ÉÊ÷È¨ÖØºÍ
-        // ³õÊ¼»¯²¢²é¼¯
+        int edgCount = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        int cost = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Øºï¿½
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½é¼¯
         s = new int[Nv+1];
         Arrays.fill(s, -1);
-        // ¶ÓÁÐÍ·
+        // ï¿½ï¿½ï¿½ï¿½Í·
         int index = 0;
 
         while (edgCount < Nv - 1) {
-            if(index >= Ne) {  // ±ßÊÕÍê
+            if(index >= Ne) {  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 break;
             }
             int v1 = edges.peek().v1;
             int v2 = edges.peek().v2;
             if(isSameUnion(v1, v2) == false) {
-                edgCount++; // ÊÕÂ¼Ò»Ìõ±ß
+                edgCount++; // ï¿½ï¿½Â¼Ò»ï¿½ï¿½ï¿½ï¿½
                 cost += edges.peek().w;
                 union(find(v1), find(v2));
             }
             index++;
             edges.poll();
         }
-        if (edgCount < Nv-1) { // Í¼²»Á¬Í¨
+        if (edgCount < Nv-1) { // Í¼ï¿½ï¿½ï¿½ï¿½Í¨
             cost = -1;
         }
         System.out.println(cost);
     }
 
-    // ½« root1 ºÍroot2 ºÏ²¢ÎªÒ»¸ö¼¯ºÏ |¸ºÊý|±íÊ¾ ¼¯ºÏµÄÔªËØ¸öÊý
+    // ï¿½ï¿½ root1 ï¿½ï¿½root2 ï¿½Ï²ï¿½ÎªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ |ï¿½ï¿½ï¿½ï¿½|ï¿½ï¿½Ê¾ ï¿½ï¿½ï¿½Ïµï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½
     static void union(int root1, int root2) {
-        if (s[root1] < s[root2]) { // ¼¯ºÏ 1 ´ó
+        if (s[root1] < s[root2]) { // ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½
             s[root1] += s[root2];
             s[root2] = root1;
         }else {
@@ -85,16 +85,16 @@ public class Main {
         }
     }
 
-    // ÕÒÔªËØ x µÄ¸ù½Úµã
+    // ï¿½ï¿½Ôªï¿½ï¿½ x ï¿½Ä¸ï¿½ï¿½Úµï¿½
     static int find(int x) {
         if (s[x] < 0) {
             return x;
         }else {
-            return s[x] = find(s[x]); // Í¬Ê±Ñ¹ËõÂ·¾¶
+            return s[x] = find(s[x]); // Í¬Ê±Ñ¹ï¿½ï¿½Â·ï¿½ï¿½
         }
     }
 
-    // Á½¸öÔªËØÊÇ·ñÎªÒ»¸ö²¢²é¼¯
+    // ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ç·ï¿½ÎªÒ»ï¿½ï¿½ï¿½ï¿½ï¿½é¼¯
     static boolean isSameUnion(int x1, int x2) {
         return find(x1) == find(x2);
     }

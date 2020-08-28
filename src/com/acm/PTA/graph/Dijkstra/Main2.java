@@ -1,14 +1,14 @@
-package com.PTA.graph.Dijkstra;
+package com.acm.PTA.graph.Dijkstra;
 
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * ³ÇÊÐ¼ä½ô¼±¾ÈÔ®
- * Çó ×î¶ÌÂ·¾¶µÄÌõÊý£¬ È¨ÖØºÍ×î´ó£¬ ¾ßÌåÂ·¾¶
- * ÁÚ½Ó¾ØÕó
- * @Date£º 2019/12/7 19:06
+ * ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô®
+ * ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¨ï¿½Øºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+ * ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
+ * @Dateï¿½ï¿½ 2019/12/7 19:06
  */
 public class Main2 {
     static int Nv, Ne, start, end;
@@ -35,7 +35,7 @@ public class Main2 {
     }
 
     static boolean dijkstra(int[] dist, int[] path) {
-        int[] dist2 = new int[Nv];  // µÚ¶þÈ¨ÖØ
+        int[] dist2 = new int[Nv];  // ï¿½Ú¶ï¿½È¨ï¿½ï¿½
         int[] num = new int[Nv];
         Arrays.fill(num, 1);
 
@@ -61,14 +61,14 @@ public class Main2 {
                 if(G[v][i] < MAX && visit[i] == false){
                     if(dist[i] > dist[v] + G[v][i]) {
                         dist[i] = dist[v] + G[v][i];
-                        dist2[i] = dist2[v] + weight[i]; // ¸üÐÂÈ¨ÖØºÍ
+                        dist2[i] = dist2[v] + weight[i]; // ï¿½ï¿½ï¿½ï¿½È¨ï¿½Øºï¿½
                         path[i] = v;
-                        num[i] = num[v]; // ¸üÐÂÂ·¾¶ºó ×î¶ÌÂ·¸öÊýÍ¬Ê±¸üÐÂ
-                    }else if(dist[i] == dist[v] + G[v][i]) { // Â·¾¶ÏàÍ¬
+                        num[i] = num[v]; // ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½ï¿½ï¿½
+                    }else if(dist[i] == dist[v] + G[v][i]) { // Â·ï¿½ï¿½ï¿½ï¿½Í¬
                         num[i] += num[v];
-                        if(dist2[i] < dist2[v] + weight[i]) { // ¾ÈÔ®¸ü¶à
-                            dist2[i] = dist2[v] + weight[i]; // ¸üÐÂÈ¨ÖØºÍ
-                            path[i] = v; // ¸üÐÂÂ·¾¶
+                        if(dist2[i] < dist2[v] + weight[i]) { // ï¿½ï¿½Ô®ï¿½ï¿½ï¿½ï¿½
+                            dist2[i] = dist2[v] + weight[i]; // ï¿½ï¿½ï¿½ï¿½È¨ï¿½Øºï¿½
+                            path[i] = v; // ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
                         }
                     }
                 }
@@ -105,17 +105,17 @@ public class Main2 {
         return  minIndex;
     }
 
-    /** ½¨Í¼, ÁÚ½Ó¾ØÕó */
+    /** ï¿½ï¿½Í¼, ï¿½Ú½Ó¾ï¿½ï¿½ï¿½ */
     static void buildGraph(){
         G = new int[Nv][Nv];
-        /** Ò»¿ªÊ¼Í¼²»Á¬Í¨ */
+        /** Ò»ï¿½ï¿½Ê¼Í¼ï¿½ï¿½ï¿½ï¿½Í¨ */
         for (int i = 0; i < Nv; i++) {
             Arrays.fill(G[i], MAX);
         }
         for (int i = 0; i < Ne; i++){
             int v1 = cin.nextInt(), v2  = cin.nextInt();
             int l = cin.nextInt();
-            /** ÎÞÏòÍ¼*/
+            /** ï¿½ï¿½ï¿½ï¿½Í¼*/
             G[v1][v2] = l; G[v2][v1] = l;
         }
     }

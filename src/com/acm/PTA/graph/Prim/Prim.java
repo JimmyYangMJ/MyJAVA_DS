@@ -1,4 +1,4 @@
-package com.PTA.graph.Prim;
+package com.acm.PTA.graph.Prim;
 
 import java.util.Scanner;
 

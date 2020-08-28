@@ -1,4 +1,4 @@
-package com.PTA.graph.Kruskal;
+package com.acm.PTA.graph.Kruskal;
 
 import java.util.*;
 

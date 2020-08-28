@@ -1,12 +1,12 @@
-package com.PTA.graph.Dijkstra;
+package com.acm.PTA.graph.Dijkstra;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Dijkstra Ëã·¨
- * Í¼´æ´¢£º ÁÚ½Ó¾ØÕó
- * Í¼ÀàÐÍ£ºÎÞÏòÓÐÈ¨Í¼
+ * Dijkstra ï¿½ã·¨
+ * Í¼ï¿½æ´¢ï¿½ï¿½ ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
+ * Í¼ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨Í¼
  */
 public class Main {
 
@@ -41,7 +41,7 @@ public class Main {
             dist[i] = G[start][i];
             path[i] = start;
         }
-        // ÊÕÂ¼ start
+        // ï¿½ï¿½Â¼ start
         visit[start] = true;
         dist[start] = 0;
         int count = 1;
@@ -51,10 +51,10 @@ public class Main {
                 break;
             }
             visit[v] = true;
-            count++;  // ¼ÇÂ¼ÊÕÂ¼¶¥µãµÄ¸öÊý
+            count++;  // ï¿½ï¿½Â¼ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
 
             for(int i =1; i <= Nv; i++) {
-                if(visit[i] == false && G[v][i] < MAX){ // ÊÇ vµÄÁÚ½Óµã£¬²¢Î´·ÃÎÊ¹ý
+                if(visit[i] == false && G[v][i] < MAX){ // ï¿½ï¿½ vï¿½ï¿½ï¿½Ú½Óµã£¬ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ê¹ï¿½
                     if(dist[i] > G[v][i] + dist[v]) {
                         dist[i] = G[v][i] + dist[v];
                         path[i] = v;
@@ -63,7 +63,7 @@ public class Main {
             }
 
         }
-        // Í¼²»Á¬Í¨
+        // Í¼ï¿½ï¿½ï¿½ï¿½Í¨
         if (count != Nv) {
             return false;
         }else{

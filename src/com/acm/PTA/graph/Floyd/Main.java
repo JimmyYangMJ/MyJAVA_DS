@@ -1,4 +1,4 @@
-package com.PTA.graph.Floyd;
+package com.acm.PTA.graph.Floyd;
 
 import java.util.Arrays;
 import java.util.Scanner;

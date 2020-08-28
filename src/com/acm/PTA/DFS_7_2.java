@@ -1,4 +1,4 @@
-package com.PTA;
+package com.acm.PTA;
 
 import java.util.Scanner;
 import java.util.Stack;

@@ -1,7 +1,6 @@
-package com.PTA;
+package com.acm.PTA;
 
 import java.util.Scanner;
-import java.util.Stack;
 
 /**
  * 7-8 数字三角形 (20 分)
