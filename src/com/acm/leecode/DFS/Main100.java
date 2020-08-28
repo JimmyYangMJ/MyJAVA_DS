@@ -1,10 +1,10 @@
 package com.acm.leecode.DFS;
 
 /**
- * 100.ÏàÍ¬µÄÊ÷
- * ¸ø¶¨Á½¸ö¶ş²æÊ÷£¬±àĞ´Ò»¸öº¯ÊıÀ´¼ìÑéËüÃÇÊÇ·ñÏàÍ¬
+ * 100.ç›¸åŒçš„æ ‘
+ * ç»™å®šä¸¤ä¸ªäºŒå‰æ ‘ï¼Œç¼–å†™ä¸€ä¸ªå‡½æ•°æ¥æ£€éªŒå®ƒä»¬æ˜¯å¦ç›¸åŒ
  * @author ymj
- * @Date£º 2019/12/11 20:18
+ * @Dateï¼š 2019/12/11 20:18
  */
 public class Main100 {
 
@@ -16,7 +16,7 @@ public class Main100 {
     }
 
     /**
-     * ·½·¨µİ¹é
+     * æ–¹æ³•é€’å½’
      */
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null &&q == null){

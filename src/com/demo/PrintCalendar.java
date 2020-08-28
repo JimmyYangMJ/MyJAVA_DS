@@ -2,7 +2,7 @@ package com.demo;
 import java.util.Scanner;
 
 /**
- *  ´òÓ¡ÈÕÀú
+ *  æ‰“å°æ—¥å†
  */
 public class PrintCalendar {
 

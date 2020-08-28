@@ -12,6 +12,7 @@ public class LongEventFactory implements EventFactory<LongEvent> {
     /**
      * 工厂模式
      * @return 事件
+     *
      */
     @Override
     public LongEvent newInstance() {

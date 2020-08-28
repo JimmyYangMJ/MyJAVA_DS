@@ -14,8 +14,8 @@ public class ThreadDemo2
 
 class TestThread2 extends Thread
 {
-	//boolean flag = true;   //×ÓÏß³Ì²»»áÍ£Ö¹
-	volatile boolean flag = true;  //ÓÃvolatileĞŞÊÎµÄ±äÁ¿¿ÉÒÔ¼°Ê±ÔÚ¸÷Ïß³ÌÀïÃæÍ¨Öª
+	//boolean flag = true;   //å­çº¿ç¨‹ä¸ä¼šåœæ­¢
+	volatile boolean flag = true;  //ç”¨volatileä¿®é¥°çš„å˜é‡å¯ä»¥åŠæ—¶åœ¨å„çº¿ç¨‹é‡Œé¢é€šçŸ¥
 	public void run() 
 	{
 		int i=0;

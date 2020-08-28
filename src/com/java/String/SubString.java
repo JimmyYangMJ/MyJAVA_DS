@@ -35,7 +35,8 @@ public class SubString {
     }
 
     public static void test() {
-        String result = "庐江县\",\"center\":\"117.289844,31.251488\",\"level\":\"district";
+        //String result = "庐江县\",\"center\":\"117.289844,31.251488\",\"level\":\"district";
+        String result = null;
         String regular = "江" + ".*" + "\",\"level\":\"";
         Pattern r2 = Pattern.compile(regular);
         Matcher m2 = r2.matcher(result);

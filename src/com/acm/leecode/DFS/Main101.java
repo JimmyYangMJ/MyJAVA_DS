@@ -1,9 +1,9 @@
 package com.acm.leecode.DFS;
 
 /**
- * ¼ì²éËüÊÇ·ñÊÇ¾µÏñ¶Ô³ÆµÄ
+ * æ£€æŸ¥å®ƒæ˜¯å¦æ˜¯é•œåƒå¯¹ç§°çš„
  * @author ymj
- * @Date£º 2019/12/11 19:24
+ * @Dateï¼š 2019/12/11 19:24
  */
 public class Main101 {
 
@@ -16,8 +16,8 @@ public class Main101 {
     }
 
     /**
-     * ÀûÓÃµİ¹é·½·¨£¬ µİ¹éÅĞ¶Ï£¬
-     * rootµÄ×ó×ÓÊ÷ÊÇ·ñºÍroot µÄÓÒ×ÓÊ÷ ¶Ô³Æ
+     * åˆ©ç”¨é€’å½’æ–¹æ³•ï¼Œ é€’å½’åˆ¤æ–­ï¼Œ
+     * rootçš„å·¦å­æ ‘æ˜¯å¦å’Œroot çš„å³å­æ ‘ å¯¹ç§°
      * @param root
      * @return
      */
@@ -35,7 +35,7 @@ public class Main101 {
     }
 
 
-    // ´íÎó£¬ ÕâÑùĞ´ÊÇÅĞ¶Ï Á½¸ö×ÓÊ÷ÊÇ·ñÏàµÈ
+    // é”™è¯¯ï¼Œ è¿™æ ·å†™æ˜¯åˆ¤æ–­ ä¸¤ä¸ªå­æ ‘æ˜¯å¦ç›¸ç­‰
     public boolean isSymmetric1(TreeNode root) {
         if(root == null){
             return true;

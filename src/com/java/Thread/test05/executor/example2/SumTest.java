@@ -14,7 +14,7 @@ public class SumTest {
 		
 		// 执行线程池
 		ThreadPoolExecutor executor=(ThreadPoolExecutor)Executors.newFixedThreadPool(4);
-		
+
 		List<Future<Integer>> resultList=new ArrayList<>();
 
 		//统计1-1000总和，分成10个任务计算，提交任务
@@ -57,5 +57,6 @@ public class SumTest {
 		
 		// 关闭线程池
 		executor.shutdown();
+
 	}
 }

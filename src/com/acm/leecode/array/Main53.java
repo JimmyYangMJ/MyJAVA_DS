@@ -7,14 +7,25 @@ package com.acm.leecode.array;
  */
 public class Main53 {
 
+
+
+    /** 二分法 */
     public int missingNumber(int[] nums) {
-        int result = 0;
-        System.out.println(nums.length);
-        return result;
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] == mid) { // 在右边
+                left = mid + 1;
+            } else { // 下标本身 | 在 左边
+                right = mid - 1;
+            }
+        }
+        return left;
     }
 
+
     public static void main(String[] args) {
-        int[] nums = {0,1,2,3,4,5,6,7,9};
-        new Main53().missingNumber(nums);
+        int[] nums = {0,1,2,3,5};
+        System.out.println(new Main53().missingNumber(nums));
     }
 }

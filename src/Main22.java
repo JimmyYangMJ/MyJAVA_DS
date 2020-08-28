@@ -1,58 +1,113 @@
-import java.util.Stack;
+import org.apache.commons.lang.RandomStringUtils;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
+import java.security.Key;
+
 
 /**
  * @author ymj
  * @Date： 2020/6/6 10:36
  */
 public class Main22 {
-    /**
-     Specialization can be seen as a response to the problem of an increasing accumulation of scientific knowledge.
-        By splitting up the subject matter into smaller units, one man could continue to handle the information and use it as the basis for further research.
-        But specialization was only one of a series of related developments in science affecting the process of communication.
-        Another was the growing professionalisation of scientific activity.
-     No clear-cut distinction can be drawn between professionals and amateurs in science: exceptions can be found to any rule.
-        Nevertheless, the word “amateur” does carry a connotation that the person concerned is not fully integrated into the scientific community and,
-            in particular, may not fully share its values.
-        The growth of specialization in the nineteenth century, with its consequent requirement of a longer, more complex training,
-            implied greater problems for amateur participation in science.
-        The trend was naturally most obvious in those areas of science based especially on a mathematical or laboratory training,
-            and can be illustrated in terms of the development of geology in the United Kingdom.
-     A comparison of British geological publications over the last century and a half reveals not simply an increasing emphasis on the primacy of research,
-        but also a changing definition of what constitutes an acceptable research paper.
-        Thus, in the nineteenth century, local geological studies represented worthwhile research in their own right; but,
-            in the twentieth century, local studies have increasingly become acceptable to professionals only if they incorporate,
-            and reflect on, the wider geological picture.
-        Amateurs, on the other hand, have continued to pursue local studies in the old way.
-        The overall result has been to make entrance to professional geological journals harder for amateurs,
-            a result that has been reinforced by the widespread introduction of refereeing,
-            first by national journals in the nineteenth century and then by several local geological journals in the twentieth century.
-        As a logical consequence of this development, separate journals have now appeared aimed mainly towards either professional or amateur readership.
-        A rather similar process of differentiation has led to professional geologists coming together nationally within one or two specific societies,
-            whereas the amateurs have tended either to remain in local societies or to come together nationally in a different way.
-     Although the process of professionalisation and specialization was already well under way in British geology during the nineteenth century,
-            its full consequences were thus delayed until the twentieth century.
-        In science generally, however, the nineteenth century must be reckoned as the crucial period for this change in the structure of science.
-
-
-
-     * @param args
-     */
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(2);
-        stack.push(5);
-        stack.push(6);stack.push(8);
-        for (int a: stack) {
-            System.out.println(a);
+        String filename= RandomStringUtils.randomAlphanumeric(10);
+        System.out.println(filename);
+        //System.out.println(encrypt("qxx", "123","12345678"));
+    }
+    /**
+     * 定义迭代次数为1000次
+     */
+    private static final int ITERATIONCOUNT = 1000;
+
+    /**
+     * 定义使用的算法为:PBEWITHMD5andDES算法
+     */
+    public static final String ALGORITHM = "PBEWithMD5AndDES";//加密算法
+
+    /**
+     * 加密明文字符串
+     *
+     * @param plaintext
+     *            待加密的明文字符串
+     * @param password
+     *            生成密钥时所使用的密码
+     * @param salt
+     *            盐值
+     * @return 加密后的密文字符串
+     * @throws Exception
+     */
+    public static String encrypt(String plaintext, String password, String salt) {
+
+        Key key = getPBEKey(password);
+        byte[] encipheredData = null;
+        PBEParameterSpec parameterSpec = new PBEParameterSpec(salt.getBytes(), ITERATIONCOUNT);
+        try {
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+
+            cipher.init(Cipher.ENCRYPT_MODE, key, parameterSpec);
+            //update-begin-author:sccott date:20180815 for:中文作为用户名时，加密的密码windows和linux会得到不同的结果 gitee/issues/IZUD7
+            encipheredData = cipher.doFinal(plaintext.getBytes("utf-8"));
+            //update-end-author:sccott date:20180815 for:中文作为用户名时，加密的密码windows和linux会得到不同的结果 gitee/issues/IZUD7
+        } catch (Exception e) {
         }
-        System.out.println(stack.size());
-
-
-
+        return bytesToHexString(encipheredData);
     }
 
-    public void  convert(int i) {
-        i = 10;
 
+    /**
+     * 根据PBE密码生成一把密钥
+     *
+     * @param password
+     *            生成密钥时所使用的密码
+     * @return Key PBE算法密钥
+     * */
+    private static Key getPBEKey(String password) {
+        // 实例化使用的算法
+        SecretKeyFactory keyFactory;
+        SecretKey secretKey = null;
+        try {
+            keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
+            // 设置PBE密钥参数
+            PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
+            // 生成密钥
+            secretKey = keyFactory.generateSecret(keySpec);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return secretKey;
     }
+
+
+    /**
+     * 将字节数组转换为十六进制字符串
+     *
+     * @param src
+     *            字节数组
+     * @return
+     */
+    public static String bytesToHexString(byte[] src) {
+        StringBuilder stringBuilder = new StringBuilder("");
+        if (src == null || src.length <= 0) {
+            return null;
+        }
+        for (int i = 0; i < src.length; i++) {
+            int v = src[i] & 0xFF;
+            String hv = Integer.toHexString(v);
+            if (hv.length() < 2) {
+                stringBuilder.append(0);
+            }
+            stringBuilder.append(hv);
+        }
+        return stringBuilder.toString();
+    }
+
+
+
+
 }

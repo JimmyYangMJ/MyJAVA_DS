@@ -1,9 +1,9 @@
 package com.acm.leecode.BitManipulation;
 
 /**
- * 461 ººÃ÷¾àÀë
+ * 461 æ±‰æ˜è·ç¦»
  * @author ymj
- * @Date£º 2019/12/14 21:21
+ * @Dateï¼š 2019/12/14 21:21
  */
 public class Main461 {
     public int hammingDistance(int x, int y) {

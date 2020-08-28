@@ -5,12 +5,12 @@ public class Demo03 {
         String s ="Hello";
         GetClassALL.printClassMethodMessage(s);
 
-        /** ³ÉÔ±±äÁ¿ĞÅÏ¢ */
+        /** æˆå‘˜å˜é‡ä¿¡æ¯ */
         GetClassALL.printFieldMessage("hello");
         System.out.println("=============");
         GetClassALL.printFieldMessage(new Integer(1));
 
-        /** ¹¹Ôìº¯ÊıĞÅÏ¢ */
+        /** æ„é€ å‡½æ•°ä¿¡æ¯ */
         GetClassALL.printConMessage("hello");
         GetClassALL.printConMessage(new Integer(1));
 

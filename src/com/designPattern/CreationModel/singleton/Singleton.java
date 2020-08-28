@@ -2,14 +2,13 @@ package com.designPattern.CreationModel.singleton;
 
 /**
  * 单例设计模式
- * 核心：构造方法--采用私有
+ * 核心：构造方法--采用私有构造函数
  */
 public class Singleton {
     private static Singleton obj = new Singleton(); //共享同一个对象
     private String content;
     /** 确保只能在类内部调用构造函数*/
-    private Singleton()
-    {
+    private Singleton() {
         System.out.print("无参构造函数");
         this.content = "abc";
     }
@@ -29,10 +28,10 @@ public class Singleton {
 
     public static void main(String[] args) {
         Singleton obj1 = Singleton.getInstance();
-        System.out.println(obj1.getContent());  //abc
+        System.out.println(obj1.getContent());  // abc
 
         Singleton obj2 = Singleton.getInstance();
-        System.out.println(obj2.getContent());  //abc
+        System.out.println(obj2.getContent());  // abc
 
         obj2.setContent("def");
         System.out.println(obj1.getContent());

@@ -6,7 +6,7 @@ import java.util.Stack;
 public class DFS_7_2 {
 
 	public static Scanner cin = new Scanner(System.in);
-	/**	 µãÊı£¬±ßÊı£¬ Æğµã*/
+	/**	 ç‚¹æ•°ï¼Œè¾¹æ•°ï¼Œ èµ·ç‚¹*/
 	private static int Nv, Ne, S;
 	private static int[][] G;
 	private static boolean[] visited;
@@ -27,12 +27,12 @@ public class DFS_7_2 {
 	public static void DFSUnRecursion (int head, int[][] G) {
 		Stack<Integer> stack = new Stack<>();
 		stack.push(head);
-		/** ±íÊ¾ÒÑ¾­·ÃÎÊ*/
+		/** è¡¨ç¤ºå·²ç»è®¿é—®*/
 		visited[head] = true; 
 		System.out.print(head);
 		while(!stack.isEmpty()) {
 			for(int i = 1; i <= Nv; i++) {
-				/** Ã»·ÃÎÊ¹ı£¬²¢ÇÒÊÇÁÚ½Óµã */
+				/** æ²¡è®¿é—®è¿‡ï¼Œå¹¶ä¸”æ˜¯é‚»æ¥ç‚¹ */
 				if(visited[i] == false && G[i][head] == 1) {
 					stack.push(i);
 					visited[i] = true;
@@ -40,7 +40,7 @@ public class DFS_7_2 {
 					break;
 				}
 			}
-			/** Ò»ÌõÂ·¾¶ÒÑ¾­½áÊø*/
+			/** ä¸€æ¡è·¯å¾„å·²ç»ç»“æŸ*/
 			if(head == stack.peek()) {
 				stack.pop();
 				if(!stack.isEmpty())
@@ -55,7 +55,7 @@ public class DFS_7_2 {
  	public static int[][] BuildGraph(int[][] G){
 		
 		G = new int[Nv+1][Nv+1];
-		/** ³õÊ¼»¯*/
+		/** åˆå§‹åŒ–*/
 		for(int i = 1; i <= Nv; i++) {
 			for(int j = 1; j <= Nv; j++) {
 				G[i][j] = 0;
@@ -80,12 +80,12 @@ public class DFS_7_2 {
 		for(int i = 1; i <= Nv; i++) {
 			visited[i] = false;
 		}
-		/** ½¨Á¢Í¼*/
+		/** å»ºç«‹å›¾*/
 		G = BuildGraph(G);
 		
 		DFSUnRecursion(S, G);
 		
-		/** ÅĞ¶ÏÍ¼ÊÇ·ñÁ¬Í¨*/
+		/** åˆ¤æ–­å›¾æ˜¯å¦è¿é€š*/
 		for(int i = 1; i <= Nv; i++) {
 			if(visited[i] == false) {
 				System.out.print(" " + 0);

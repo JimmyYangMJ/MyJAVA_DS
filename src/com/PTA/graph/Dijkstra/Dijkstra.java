@@ -89,7 +89,6 @@ public class Dijkstra {
                     }
                 }
             }
-
         }
 
         System.out.println(dist[end] + " " + fund[end]);

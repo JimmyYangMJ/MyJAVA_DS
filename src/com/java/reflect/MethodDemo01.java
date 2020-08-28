@@ -15,28 +15,28 @@ class A{
 }
 public class MethodDemo01 {
     public static void main(String[] args) {
-        //Òª»ñÈ¡print(int ,int )·½·¨  1.Òª»ñÈ¡Ò»¸ö·½·¨¾ÍÊÇ»ñÈ¡ÀàµÄĞÅÏ¢£¬»ñÈ¡ÀàµÄĞÅÏ¢Ê×ÏÈÒª»ñÈ¡ÀàµÄÀàÀàĞÍ
+        //è¦è·å–print(int ,int )æ–¹æ³•  1.è¦è·å–ä¸€ä¸ªæ–¹æ³•å°±æ˜¯è·å–ç±»çš„ä¿¡æ¯ï¼Œè·å–ç±»çš„ä¿¡æ¯é¦–å…ˆè¦è·å–ç±»çš„ç±»ç±»å‹
         A a1 = new A();
         Class c = a1.getClass();
         /**
-         * 2.»ñÈ¡·½·¨ Ãû³ÆºÍ²ÎÊıÁĞ±íÀ´¾ö¶¨
-         * getMethod»ñÈ¡µÄÊÇpublicµÄ·½·¨
-         * getDelcaredMethod×Ô¼ºÉùÃ÷µÄ·½·¨
+         * 2.è·å–æ–¹æ³• åç§°å’Œå‚æ•°åˆ—è¡¨æ¥å†³å®š
+         * getMethodè·å–çš„æ˜¯publicçš„æ–¹æ³•
+         * getDelcaredMethodè‡ªå·±å£°æ˜çš„æ–¹æ³•
          */
         try {
             //Method m =  c.getMethod("print", new Class[]{int.class,int.class});
             Method m = c.getMethod("print", int.class,int.class);
 
-            /** ·½·¨µÄ·´Éä²Ù×÷ */
-            //a1.print(10, 20);·½·¨µÄ·´Éä²Ù×÷ÊÇÓÃm¶ÔÏóÀ´½øĞĞ·½·¨µ÷ÓÃ ºÍa1.printµ÷ÓÃµÄĞ§¹ûÍêÈ«ÏàÍ¬
-            //·½·¨Èç¹ûÃ»ÓĞ·µ»ØÖµ·µ»Ønull,ÓĞ·µ»ØÖµ·µ»Ø¾ßÌåµÄ·µ»ØÖµ
+            /** æ–¹æ³•çš„åå°„æ“ä½œ */
+            //a1.print(10, 20);æ–¹æ³•çš„åå°„æ“ä½œæ˜¯ç”¨må¯¹è±¡æ¥è¿›è¡Œæ–¹æ³•è°ƒç”¨ å’Œa1.printè°ƒç”¨çš„æ•ˆæœå®Œå…¨ç›¸åŒ
+            //æ–¹æ³•å¦‚æœæ²¡æœ‰è¿”å›å€¼è¿”å›null,æœ‰è¿”å›å€¼è¿”å›å…·ä½“çš„è¿”å›å€¼
             //Object o = m.invoke(a1,new Object[]{10,20});
             Object o = m.invoke(a1, 10,20);
             System.out.println("==================");
 
-            //»ñÈ¡·½·¨print(String,String)
+            //è·å–æ–¹æ³•print(String,String)
             Method m1 = c.getMethod("print",String.class,String.class);
-            //ÓÃ·½·¨½øĞĞ·´Éä²Ù×÷
+            //ç”¨æ–¹æ³•è¿›è¡Œåå°„æ“ä½œ
             //a1.print("hello", "WORLD");
             o = m1.invoke(a1, "hello","WORLD");
             System.out.println("===================");

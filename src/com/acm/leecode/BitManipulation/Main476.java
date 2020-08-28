@@ -1,9 +1,9 @@
 package com.acm.leecode.BitManipulation;
 
 /**
- * 476. Êı×ÖµÄ²¹Êı
+ * 476. æ•°å­—çš„è¡¥æ•°
  * @author ymj
- * @Date£º 2019/12/14 21:40
+ * @Dateï¼š 2019/12/14 21:40
  */
 public class Main476 {
 
@@ -11,8 +11,8 @@ public class Main476 {
         int result = 0;
         int temp = 1;
         while (num > 0) {
-            if((num & 1) == 0) { // ×îºóÒ»Î» Îª 0
-                result = result  | temp; // ×îºóÒ»Î» ÖÃÎª 1
+            if((num & 1) == 0) { // æœ€åä¸€ä½ ä¸º 0
+                result = result  | temp; // æœ€åä¸€ä½ ç½®ä¸º 1
             }
             temp <<= 1;
             num >>= 1;

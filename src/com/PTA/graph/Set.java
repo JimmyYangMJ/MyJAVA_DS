@@ -5,45 +5,45 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * ²¢²é¼¯
- * °¸Àı - ÅóÓÑÈ¦
+ * å¹¶æŸ¥é›†
+ * æ¡ˆä¾‹ - æœ‹å‹åœˆ
  */
 public class Set {
 
     static Scanner cin = new Scanner(System.in);
-    /** ÈËÊı */
+    /** äººæ•° */
     static int n;
-    /** ÅóÓÑÈ¦Êı*/
+    /** æœ‹å‹åœˆæ•°*/
     static int m;
-    /** ÅóÓÑ¼¯ºÏ ´Ó1~N±àºÅ, ¸ºÊı±íÊ¾¼¯ºÏÈËÊı£¬-4±íÊ¾¼¯ºÏ4¸öÈË*/
+    /** æœ‹å‹é›†åˆ ä»1~Nç¼–å·, è´Ÿæ•°è¡¨ç¤ºé›†åˆäººæ•°ï¼Œ-4è¡¨ç¤ºé›†åˆ4ä¸ªäºº*/
     static int[] s;
 
-    /** ÕÒµ½Ò»¸ö½áµãËùÔÚµÄ¼¯ºÏ*/
+    /** æ‰¾åˆ°ä¸€ä¸ªç»“ç‚¹æ‰€åœ¨çš„é›†åˆ*/
     static int find(int x) {
-        if (s[x] < 0) { /* ±¾ÉíÎªÒ»¸ö¼¯ºÏ*/
+        if (s[x] < 0) { /* æœ¬èº«ä¸ºä¸€ä¸ªé›†åˆ*/
             return x;
         }else {
             return s[x] = find(s[x]);
         }
     }
 
-    /** ºÏ²¢¼¯ºÏ*/
+    /** åˆå¹¶é›†åˆ*/
     static int union(int root1, int root2) {
-        if(s[root1] > s[root2]) { /* Èç¹û¼¯ºÏ2±È½Ï´ó */
+        if(s[root1] > s[root2]) { /* å¦‚æœé›†åˆ2æ¯”è¾ƒå¤§ */
             s[root2] += s[root1];
-            s[root1] = root2;    /* ¼¯ºÏ1²¢Èë¼¯ºÏ2  */
+            s[root1] = root2;    /* é›†åˆ1å¹¶å…¥é›†åˆ2  */
             return  root2;
         }else{
             s[root1] += s[root2];
-            s[root2] = root1;    /* ¼¯ºÏ2²¢Èë¼¯ºÏ1  */
+            s[root2] = root1;    /* é›†åˆ2å¹¶å…¥é›†åˆ1  */
             return  root1;
         }
 
     }
 
-    /** Ò»¸ö½áµã²åÈë¼¯ºÏ*/
+    /** ä¸€ä¸ªç»“ç‚¹æ’å…¥é›†åˆ*/
     static void inputSet(){
-        /** Ò»¸öÅóÓÑÈ¦µÄÈËÊı*/
+        /** ä¸€ä¸ªæœ‹å‹åœˆçš„äººæ•°*/
         int num;
         num = cin.nextInt();
         int p, root1, root2;
@@ -52,13 +52,13 @@ public class Set {
         for (int i = 1; i < num; i++) {
             p = cin.nextInt();
             root2 = find(p);
-            if(root1 != root2) { /* Èç¹û¸ÃÑ§ÉúÓëµÚ1ÈË²»ÊôÓÚÍ¬Ò»ÅóÓÑÈ¦ */
+            if(root1 != root2) { /* å¦‚æœè¯¥å­¦ç”Ÿä¸ç¬¬1äººä¸å±äºåŒä¸€æœ‹å‹åœˆ */
                 root1 = union(root1, root2);
             }
         }
     }
 
-    /** ÕÒ³ö×î´óÅóÓÑÈ¦*/
+    /** æ‰¾å‡ºæœ€å¤§æœ‹å‹åœˆ*/
     static void checkFriends() {
         int max = 1;
         for (int i = 1; i <= n; i++) {
@@ -73,7 +73,7 @@ public class Set {
         n = cin.nextInt();
         m = cin.nextInt();
         s = new int[n+1];
-        /** ³õÊ¼»¯²¢²é¼¯*/
+        /** åˆå§‹åŒ–å¹¶æŸ¥é›†*/
         Arrays.fill(s,-1);
         for (int i = 0; i < m; i++) {
             inputSet();

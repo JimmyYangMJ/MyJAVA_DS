@@ -1,8 +1,8 @@
 package com.acm.csp.csp2019_6;// INFO BEGIN
 //
-// User = 201910005304(ÑîÃ÷½Ü) 
+// User = 201910005304(æ¨æ˜æ°) 
 // Group = JAVA 
-// Problem = Ğ¡Ã÷ÖÖÆ»¹û 
+// Problem = å°æ˜ç§è‹¹æœ 
 // Language = JAVA 
 // SubmitTime = 2019-09-15 13:53:37 
 //
@@ -47,7 +47,5 @@ public class Main1
 		min = min *(-1);
 		index++;
 		System.out.print(answer +" " + index + " " + min);
-		
-	
 	}
 }

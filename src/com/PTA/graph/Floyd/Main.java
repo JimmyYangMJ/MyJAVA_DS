@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Floyed Ëã·¨
- * Í¼´æ´¢£º ÁÚ½Ó¾ØÕó
- * Í¼ÀàĞÍ£ºÎŞÏòÓĞÈ¨Í¼
+ * Floyed ç®—æ³•
+ * å›¾å­˜å‚¨ï¼š é‚»æ¥çŸ©é˜µ
+ * å›¾ç±»å‹ï¼šæ— å‘æœ‰æƒå›¾
  */
 public class Main {
 
@@ -40,13 +40,13 @@ public class Main {
 
         for (int i = 1; i <= Nv; i++) {
             for (int j = 1; j <= Nv; j++) {
-                dist[i][j] = G[i][j]; // ¸´ÖÆ Í¼ ÁÚ½Ó¾ØÕó
-                path[i][j] = i; // i ÎªÆğµã
+                dist[i][j] = G[i][j]; // å¤åˆ¶ å›¾ é‚»æ¥çŸ©é˜µ
+                path[i][j] = i; // i ä¸ºèµ·ç‚¹
             }
 
         }
 
-        // floyd Ëã·¨
+        // floyd ç®—æ³•
         for (int k = 1; k <= Nv; k++) {
             for (int i = 1; i <= Nv; i++) {
                 for (int j = 1; j <= Nv; j++) {

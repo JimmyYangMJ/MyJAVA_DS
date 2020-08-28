@@ -10,7 +10,6 @@ import com.lmax.disruptor.EventHandler;
 public class LongEventHandler implements EventHandler<LongEvent> {
 
     /**
-     *
      * @param longEvent 发布到 环形缓冲区 （ringBuffer ）的事件
      * @param l 正在处理的事件
      * @param b 以指示这是否是来自环形缓冲区的批处理中的最后一个事件

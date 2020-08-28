@@ -25,7 +25,7 @@ public class HashMapTest {
 			System.out.print(it.next() + " ");
 		}
 		System.out.println();
-		hm.put(30000, "ddd");  //¸üĞÂ¸²¸Çccc
+		hm.put(30000, "ddd");  //æ›´æ–°è¦†ç›–ccc
 		System.out.println(hm.get(30000));
 
 		hm.remove(2);
@@ -47,39 +47,39 @@ public class HashMapTest {
 	public static void traverseByEntry(HashMap<Integer,String> ht)
 	{
 		long startTime = System.nanoTime();
-		System.out.println("============Entryµü´úÆ÷±éÀú==============");
+		System.out.println("============Entryè¿­ä»£å™¨éå†==============");
 		Integer key;
 		String value;
 		Iterator<Entry<Integer, String>> iter = ht.entrySet().iterator();
 		while(iter.hasNext()) {
 		    Entry<Integer, String> entry = iter.next();
-		    // »ñÈ¡key
+		    // è·å–key
 		    key = entry.getKey();
-		    // »ñÈ¡value
+		    // è·å–value
 		    value = entry.getValue();
 		    //System.out.println("Key:" + key + ", Value:" + value);
 		}
 		long endTime = System.nanoTime();
 	    long duration = endTime - startTime;
-	    System.out.println(duration + "ÄÉÃë");
+	    System.out.println(duration + "çº³ç§’");
 	}
 	
 	
 	public static void traverseByKeySet(HashMap<Integer,String> ht)
 	{
 		long startTime = System.nanoTime();
-		System.out.println("============KeySetµü´úÆ÷±éÀú=============="); 
+		System.out.println("============KeySetè¿­ä»£å™¨éå†=============="); 
 		Integer key;
 		String value;
 		Iterator<Integer> iter = ht.keySet().iterator();
 		while(iter.hasNext()) {
 		    key = iter.next();		    
-		    // »ñÈ¡value
+		    // è·å–value
 		    value = ht.get(key);
 		    //System.out.println("Key:" + key + ", Value:" + value);
 		}
 		long endTime = System.nanoTime();
 	    long duration = endTime - startTime;
-	    System.out.println(duration + "ÄÉÃë");
+	    System.out.println(duration + "çº³ç§’");
 	}
 }

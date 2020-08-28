@@ -1,72 +1,43 @@
 package com.net.URL;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class URL {
 
 
-    static String URL = "http://restapi.amap.com/v3/config/district?key=b0435ec549bd4c391aebe4d36e211689&";
-    static String urlString = "keywords=" +
 
-            "&subdistrict=1&extensions=all";
+    static final String URL = "http://10.1.30.207:50045/monitor/pollutedsign/searchPage?userId=1&startTime=2020-06-28+00%3A00%3A00&endTime=2020-07-28+23%3A59%3A59&collId=&stationName=";
 
 
-   static String[] stringStreet = {
-           "马鞍山市",
-           "花山区",
-           "雨山区",
-           "博望区",
-           "当涂县",
-           "含山县",
-           "和县"
-   };
+
 
    public static void main(String[] args) {
 
 
-
          try {
-            String urlName = URL;
+             String urlTypeName = URLEncoder.encode("杨家浜","ISO-8859-1");
+             String urlName = URL + urlTypeName + "&pollutedTypeIds=&groupIds=186%2C188%2C187%2C189&page=1&rows=10";
 
-            java.net.URL url = new java.net.URL(urlName);
-            URLConnection connection = url.openConnection();
-            connection.connect();
+             java.net.URL url = new java.net.URL(urlName);
+             URLConnection connection = url.openConnection();
+             connection.connect();
 
+             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "ISO-8859-1"));
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
-
-            // 输出收到的内容
-            StringBuffer stringBuffer = new StringBuffer();
-            String line = "";
-            while((line = br.readLine()) != null) {
-               stringBuffer.append(line);
-            }
-            /** 遍历字符串 */
-            String result = stringBuffer.toString();
-            System.out.println(result);
-
-            for (String temp : stringStreet) {
-                //System.out.println(temp);
-                int index = result.indexOf(temp);
-                if (index == -1) {
-                    System.out.println("null");
-                }else {
-                    int start = index + temp.length() + 11;
-                    int end = start + 20;
-                    String l = result.substring(start, end);
-                    String[] lntlat = l.split("\"|,");
-                    System.out.println(lntlat[1] + "\t" + lntlat[2]);
-                }
-            }
-
-
-            br.close();
+             // 输出收到的内容
+             StringBuffer stringBuffer = new StringBuffer();
+             String line = "";
+             while((line = br.readLine()) != null) {
+                 stringBuffer.append(line);
+             }
+             System.out.println(stringBuffer.toString());
+             br.close();
          } catch (UnsupportedEncodingException e) {
              e.printStackTrace();
          } catch (MalformedURLException e) {

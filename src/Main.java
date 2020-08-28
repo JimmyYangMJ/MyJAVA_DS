@@ -28,7 +28,7 @@ public class Main {
         }catch (Exception e){
             e.printStackTrace();
         }
-    };
+    }
     public static void main(String args[]){
         Main.createFongImg("D:\\girl.jpg");
         System.out.println("OK");

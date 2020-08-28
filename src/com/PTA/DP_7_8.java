@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * 7-8 Êý×ÖÈý½ÇÐÎ (20 ·Ö)
+ * 7-8 æ•°å­—ä¸‰è§’å½¢ (20 åˆ†)
  * https://pintia.cn/problem-sets/1150412808244031488/problems/1150415053572403200
  *
  */

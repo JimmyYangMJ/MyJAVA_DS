@@ -8,37 +8,37 @@ class Foo{
 }
 public class Demo01 {
     public static void main(String[] args) {
-        /** ÔÚÃüÁîĞĞ
-         * ±àÒë
+        /** åœ¨å‘½ä»¤è¡Œ
+         * ç¼–è¯‘
          *  D:\IDEA-workspace\MyJAVA_DS\src>   javac com/java/reflect/Demo01.java
-         * ÔËĞĞ
-         *  D:\IDEA-workspace\MyJAVA_DS\src>   java com/java/reflect/Demo01 £¨²ÎÊı1 ²ÎÊı2¡¤¡¤¡¤¡¤£©
+         * è¿è¡Œ
+         *  D:\IDEA-workspace\MyJAVA_DS\src>   java com/java/reflect/Demo01 ï¼ˆå‚æ•°1 å‚æ•°2Â·Â·Â·Â·ï¼‰
          *
          */
         System.out.println(args[0]);
-        //FooµÄÊµÀı¶ÔÏóÈçºÎ±íÊ¾
-        Foo foo1 = new Foo();//foo1¾Í±íÊ¾³öÀ´ÁË.
-        //FooÕâ¸öÀà Ò²ÊÇÒ»¸öÊµÀı¶ÔÏó£¬ClassÀàµÄÊµÀı¶ÔÏó,ÈçºÎ±íÊ¾ÄØ
-        //ÈÎºÎÒ»¸öÀà¶¼ÊÇClassµÄÊµÀı¶ÔÏó£¬
-        /**Õâ¸öÊµÀı¶ÔÏóÓĞÈıÖÖ±íÊ¾·½Ê½*/
+        //Fooçš„å®ä¾‹å¯¹è±¡å¦‚ä½•è¡¨ç¤º
+        Foo foo1 = new Foo();//foo1å°±è¡¨ç¤ºå‡ºæ¥äº†.
+        //Fooè¿™ä¸ªç±» ä¹Ÿæ˜¯ä¸€ä¸ªå®ä¾‹å¯¹è±¡ï¼ŒClassç±»çš„å®ä¾‹å¯¹è±¡,å¦‚ä½•è¡¨ç¤ºå‘¢
+        //ä»»ä½•ä¸€ä¸ªç±»éƒ½æ˜¯Classçš„å®ä¾‹å¯¹è±¡ï¼Œ
+        /**è¿™ä¸ªå®ä¾‹å¯¹è±¡æœ‰ä¸‰ç§è¡¨ç¤ºæ–¹å¼*/
 
-        /** µÚÒ»ÖÖ±íÊ¾·½Ê½--->Êµ¼ÊÔÚ¸æËßÎÒÃÇÈÎºÎÒ»¸öÀà¶¼ÓĞÒ»¸öÒşº¬µÄ¾²Ì¬³ÉÔ±±äÁ¿class */
+        /** ç¬¬ä¸€ç§è¡¨ç¤ºæ–¹å¼--->å®é™…åœ¨å‘Šè¯‰æˆ‘ä»¬ä»»ä½•ä¸€ä¸ªç±»éƒ½æœ‰ä¸€ä¸ªéšå«çš„é™æ€æˆå‘˜å˜é‡class */
         Class c1 = Foo.class;
         System.out.println(c1);
-        /** µÚ¶şÖĞ±í´ï·½Ê½  ÒÑ¾­ÖªµÀ¸ÃÀàµÄ¶ÔÏóÍ¨¹ıgetClass·½·¨ */
+        /** ç¬¬äºŒä¸­è¡¨è¾¾æ–¹å¼  å·²ç»çŸ¥é“è¯¥ç±»çš„å¯¹è±¡é€šè¿‡getClassæ–¹æ³• */
         Class c2 = foo1.getClass();
         System.out.println(c2);
-        /*¹ÙÍø c1 ,c2 ±íÊ¾ÁËFooÀàµÄÀàÀàĞÍ(class type)
-         * ÍòÊÂÍòÎï½Ô¶ÔÏó£¬
-         * ÀàÒ²ÊÇ¶ÔÏó£¬ÊÇClassÀàµÄÊµÀı¶ÔÏó
-         * Õâ¸ö¶ÔÏóÎÒÃÇ³ÆÎª¸ÃÀàµÄÀàÀàĞÍ
+        /*å®˜ç½‘ c1 ,c2 è¡¨ç¤ºäº†Fooç±»çš„ç±»ç±»å‹(class type)
+         * ä¸‡äº‹ä¸‡ç‰©çš†å¯¹è±¡ï¼Œ
+         * ç±»ä¹Ÿæ˜¯å¯¹è±¡ï¼Œæ˜¯Classç±»çš„å®ä¾‹å¯¹è±¡
+         * è¿™ä¸ªå¯¹è±¡æˆ‘ä»¬ç§°ä¸ºè¯¥ç±»çš„ç±»ç±»å‹
          *
          */
 
-        //²»¹Üc1  or c2¶¼´ú±íÁËFooÀàµÄÀàÀàĞÍ£¬Ò»¸öÀàÖ»¿ÉÄÜÊÇClassÀàµÄÒ»¸öÊµÀı¶ÔÏó
+        //ä¸ç®¡c1  or c2éƒ½ä»£è¡¨äº†Fooç±»çš„ç±»ç±»å‹ï¼Œä¸€ä¸ªç±»åªå¯èƒ½æ˜¯Classç±»çš„ä¸€ä¸ªå®ä¾‹å¯¹è±¡
         System.out.println(c1 == c2);
 
-        /** µÚÈıÖÖ±í´ï·½Ê½ */
+        /** ç¬¬ä¸‰ç§è¡¨è¾¾æ–¹å¼ */
         try {
             Class c3 = null;
             c3 = Class.forName("com.java.reflect.Foo");
@@ -50,12 +50,12 @@ public class Demo01 {
             e.printStackTrace();
         }
 
-        //ÎÒÃÇÍêÈ«¿ÉÒÔÍ¨¹ıÀàµÄÀàÀàĞÍ´´½¨¸ÃÀàµÄ¶ÔÏóÊµÀı---->Í¨¹ıc1 or c2 or c3´´½¨FooµÄÊµÀı¶ÔÏó
+        //æˆ‘ä»¬å®Œå…¨å¯ä»¥é€šè¿‡ç±»çš„ç±»ç±»å‹åˆ›å»ºè¯¥ç±»çš„å¯¹è±¡å®ä¾‹---->é€šè¿‡c1 or c2 or c3åˆ›å»ºFooçš„å®ä¾‹å¯¹è±¡
         try {
             if(c1 instanceof Class){
                 System.out.println("c1 instanceof Class:" + true);
             }
-                Foo foo = (Foo)c1.newInstance();//ĞèÒªÓĞÎŞ²ÎÊıµÄ¹¹Ôì·½·¨
+                Foo foo = (Foo)c1.newInstance();//éœ€è¦æœ‰æ— å‚æ•°çš„æ„é€ æ–¹æ³•
             foo.print();
         } catch (InstantiationException e) {
             e.printStackTrace();

@@ -6,37 +6,37 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * ÎŞÈ¨Í¼µÄµ¥Ôª×î¶ÌÂ·¾¶Ëã·¨<br>
- * ÊµÏÖ----BFS <br>
- * °¸Àı----Áù¶È¿Õ¼ä
- * (È±Ïİ£º ¶ÔÓÚ±ß½ç²âÊÔ£¬×î´óNºÍ M ´íÎó
- * Õı½â£ºhttps://blog.csdn.net/fairydeng/article/details/89470635)
+ * æ— æƒå›¾çš„å•å…ƒæœ€çŸ­è·¯å¾„ç®—æ³•<br>
+ * å®ç°----BFS <br>
+ * æ¡ˆä¾‹----å…­åº¦ç©ºé—´
+ * (ç¼ºé™·ï¼š å¯¹äºè¾¹ç•Œæµ‹è¯•ï¼Œæœ€å¤§Nå’Œ M é”™è¯¯)
+ * æ­£è§£ï¼šhttps://blog.csdn.net/fairydeng/article/details/89470635)
  */
 public class BFS {
-    /**Ë¼Â·£º ¶ÔÃ¿¸ö½áµã½øĞĞ¹ã¶ÈËÑË÷
-     * ÄÑµã£º ²ãÊıµÄ½¨Á¢*/
+    /**æ€è·¯ï¼š å¯¹æ¯ä¸ªç»“ç‚¹è¿›è¡Œå¹¿åº¦æœç´¢
+     * éš¾ç‚¹ï¼š å±‚æ•°çš„å»ºç«‹*/
 
-    /** µãÊı´Ó  1 ¿ªÊ¼*/
+    /** ç‚¹æ•°ä»  1 å¼€å§‹*/
     static int Ne;
     static int Nv;
-    /** ±ê¼Ç ÏÂ±ê ½ÚµãÊÇ·ñ±»·ÃÎÊ */
+    /** æ ‡è®° ä¸‹æ ‡ èŠ‚ç‚¹æ˜¯å¦è¢«è®¿é—® */
     static boolean [] visited;
     static Vnode[] vnodes;
     static Scanner cin = new Scanner(System.in);
 
-    /** ÁÚ½Ó±í <±íÍ·½áµã>
-     * ÏÂ±ê¾ÍÊÇ±íÊ¾ ½áµãºÅ*/
+    /** é‚»æ¥è¡¨ <è¡¨å¤´ç»“ç‚¹>
+     * ä¸‹æ ‡å°±æ˜¯è¡¨ç¤º ç»“ç‚¹å·*/
     static class Vnode {
         Node point = null;
     }
-    /** ½áµã */
+    /** ç»“ç‚¹ */
     static class Node {
         int num;
         Node next = null;
     }
-    /** ½¨Í¼, ÁÚ½Ó±í */
+    /** å»ºå›¾, é‚»æ¥è¡¨ */
     static void BuildGraph(){
-        /** ÁÚ½Ó±í Í·½Úµã£ºvnodes*/
+        /** é‚»æ¥è¡¨ å¤´èŠ‚ç‚¹ï¼švnodes*/
         for (int i = 1; i <= Ne ; i++) {
             int start = cin.nextInt();
             int end = cin.nextInt();
@@ -45,7 +45,7 @@ public class BFS {
             temp.num = end;
             temp.next = vnodes[start].point;
             vnodes[start].point = temp;
-            /** ÓÉÓÚÊÇÎŞÏòÍ¼ */
+            /** ç”±äºæ˜¯æ— å‘å›¾ */
             // 2.
             temp = new Node();
             temp.num = start;
@@ -55,7 +55,7 @@ public class BFS {
         }
     }
 
-    /** ¶ÔÃ¿¸ö½áµã½øĞĞ ¹ã¶ÈÓÅÏÈËÑË÷ */
+    /** å¯¹æ¯ä¸ªç»“ç‚¹è¿›è¡Œ å¹¿åº¦ä¼˜å…ˆæœç´¢ */
     static void sixDegree(){
         for (int i = 1; i <= Nv; i++) {
             int num = BFS(i);
@@ -67,18 +67,18 @@ public class BFS {
 
     /**
      *
-     * @param start ¿ªÊ¼µÄ½áµã
-     * @return ¹ØÏµ²ãÊıÔÚ 6 ÒÔÄÚµÄ½áµãÊı
+     * @param start å¼€å§‹çš„ç»“ç‚¹
+     * @return å…³ç³»å±‚æ•°åœ¨ 6 ä»¥å†…çš„ç»“ç‚¹æ•°
      */
     static int BFS(int start){
         visited = new boolean[Nv+1];
-        /** ¼ÇÂ¼6²ãÒÔÄÚµÄÏà¹ØµÄÈËÊı */
+        /** è®°å½•6å±‚ä»¥å†…çš„ç›¸å…³çš„äººæ•° */
         int count = 1;
-        /** ¼ÇÂ¼²ãÊı */
+        /** è®°å½•å±‚æ•° */
         int level = 0;
-        /** ¼ÇÂ¼Ò»²ãÖĞ×îºóÒ»¸ö·ÃÎÊµÄ½áµã */
+        /** è®°å½•ä¸€å±‚ä¸­æœ€åä¸€ä¸ªè®¿é—®çš„ç»“ç‚¹ */
         int last = start;
-        int tail = 0; // ¸¨Öú½áµã
+        int tail = 0; // è¾…åŠ©ç»“ç‚¹
 
         Queue<Integer> queue = new LinkedList<>();
 
@@ -114,7 +114,7 @@ public class BFS {
         Nv = cin.nextInt();
         Ne = cin.nextInt();
         vnodes = new Vnode[Nv+1];
-        for (int i = 0; i <= Nv; i++) { // ·ÖÅä¿Õ¼ä
+        for (int i = 0; i <= Nv; i++) { // åˆ†é…ç©ºé—´
             vnodes[i] = new Vnode();
         }
         BuildGraph();

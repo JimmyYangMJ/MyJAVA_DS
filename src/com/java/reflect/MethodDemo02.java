@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 /**
- *  Í¨¹ı·´ÉäÈÏÊ¶·ºĞÍ
+ *  é€šè¿‡åå°„è®¤è¯†æ³›å‹
  */
 public class MethodDemo02 {
 
@@ -13,26 +13,26 @@ public class MethodDemo02 {
 
         ArrayList<String> list1 = new ArrayList<String>();
         list1.add("hello");
-        //list1.add(20);´íÎóµÄ
+        //list1.add(20);é”™è¯¯çš„
         Class c1 = list.getClass();
         Class c2 = list1.getClass();
         System.out.println(c1 == c2);
-        /** ·´ÉäµÄ²Ù×÷¶¼ÊÇ±àÒëÖ®ºóµÄ²Ù×÷ */
+        /** åå°„çš„æ“ä½œéƒ½æ˜¯ç¼–è¯‘ä¹‹åçš„æ“ä½œ */
 
         /*
-         * c1==c2½á¹û·µ»ØtrueËµÃ÷±àÒëÖ®ºó¼¯ºÏµÄ·ºĞÍÊÇÈ¥·ºĞÍ»¯µÄ
-         * JavaÖĞ¼¯ºÏµÄ·ºĞÍ£¬ÊÇ·ÀÖ¹´íÎóÊäÈëµÄ£¬Ö»ÔÚ±àÒë½×¶ÎÓĞĞ§£¬
-         * ÈÆ¹ı±àÒë¾ÍÎŞĞ§ÁË
-         * ÑéÖ¤£ºÎÒÃÇ¿ÉÒÔÍ¨¹ı·½·¨µÄ·´ÉäÀ´²Ù×÷£¬ÈÆ¹ı±àÒë
+         * c1==c2ç»“æœè¿”å›trueè¯´æ˜ç¼–è¯‘ä¹‹åé›†åˆçš„æ³›å‹æ˜¯å»æ³›å‹åŒ–çš„
+         * Javaä¸­é›†åˆçš„æ³›å‹ï¼Œæ˜¯é˜²æ­¢é”™è¯¯è¾“å…¥çš„ï¼Œåªåœ¨ç¼–è¯‘é˜¶æ®µæœ‰æ•ˆï¼Œ
+         * ç»•è¿‡ç¼–è¯‘å°±æ— æ•ˆäº†
+         * éªŒè¯ï¼šæˆ‘ä»¬å¯ä»¥é€šè¿‡æ–¹æ³•çš„åå°„æ¥æ“ä½œï¼Œç»•è¿‡ç¼–è¯‘
          */
         try {
             Method m = c2.getMethod("add", Object.class);
-            m.invoke(list1, 20);//ÈÆ¹ı±àÒë²Ù×÷¾ÍÈÆ¹ıÁË·ºĞÍ
+            m.invoke(list1, 20);//ç»•è¿‡ç¼–è¯‘æ“ä½œå°±ç»•è¿‡äº†æ³›å‹
             System.out.println(list1.size());
             System.out.println(list1);
 			/*for (String string : list1) {
 				System.out.println(string);
-			}*/   //ÏÖÔÚ²»ÄÜÕâÑù±éÀú
+			}*/   //ç°åœ¨ä¸èƒ½è¿™æ ·éå†
         } catch (Exception e) {
             e.printStackTrace();
         }

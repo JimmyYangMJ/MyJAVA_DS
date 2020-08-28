@@ -2,26 +2,26 @@ package com.designPattern.BehaviorPattern.Observer;
 
 
 /**
- * Ö÷Ìâ½Ó¿Ú£¬ËùÓĞµÄÖ÷Ìâ±ØĞëÊµÏÖ´Ë½Ó¿Ú
+ * ä¸»é¢˜æ¥å£ï¼Œæ‰€æœ‰çš„ä¸»é¢˜å¿…é¡»å®ç°æ­¤æ¥å£
     @author ymj
  */
 public interface Subject
 {
     /**
-     * ×¢²áÒ»¸ö¹Û²ì×Å
+     * æ³¨å†Œä¸€ä¸ªè§‚å¯Ÿç€
      * @param observer
      */
     public void registerObserver(Observer observer);
 
     /**
-     * ÒÆ³ıÒ»¸ö¹Û²ìÕß
+     * ç§»é™¤ä¸€ä¸ªè§‚å¯Ÿè€…
      *
      * @param observer
      */
     public void removeObserver(Observer observer);
 
     /**
-     * Í¨ÖªËùÓĞµÄ¹Û²ì×Å
+     * é€šçŸ¥æ‰€æœ‰çš„è§‚å¯Ÿç€
      */
     public void notifyObservers();
 
