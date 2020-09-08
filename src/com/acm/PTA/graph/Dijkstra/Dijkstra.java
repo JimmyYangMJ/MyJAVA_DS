@@ -11,6 +11,15 @@ import java.util.Scanner;
  */
 public class Dijkstra {
 
+    /**
+     * 输入输出描述：
+     * 输入数据的第1行给出4个正整数N、M、S、D，
+     * 其中N（2≤N≤500）是城市的个数，顺便假设城市的编号为0~(N−1)；M是高速公路的条数；S是出发地的城市编号；D是目的地的城市编号。
+     * 随后的M行中，每行给出一条高速公路的信息，分别是：城市1、城市2、高速公路长度、收费额，中间用空格分开，
+     * 数字均为整数且不超过500。输入保证解的存在。
+     *
+     * 在一行里输出路径的长度和收费总额，数字间以空格分隔，输出结尾不能有多余空格
+     */
     static Scanner cin  = new Scanner(System.in);
 
     /** 点数， 边数*/
@@ -54,11 +63,11 @@ public class Dijkstra {
         /** 对起点进行初始化*/
         visited[start] = true;
         dist[start] = 0; /* 起点到自己的最短路径为 0 */
-        fund[start] = 0; /* 第二种权重*/
-        for (int v = 0; v < Nv; v++){ /* 扫描起点的邻接点*/
+        fund[start] = 0; /* 第二种权重 */
+        for (int v = 0; v < Nv; v++){ /* 扫描起点的邻接点 */
             dist[v] = G[start][v];
             fund[v] = GW[start][v];
-            if(G[start][v] < Integer.MAX_VALUE) { /* 是邻接点*/
+            if(G[start][v] < Integer.MAX_VALUE) { /* 是邻接点 */
                 path[v] = start;
             }else{
                 path[v] = -1;
@@ -74,16 +83,15 @@ public class Dijkstra {
             visited[v] = true; // 之后对v的每一个邻接点进行访问
             for(int w = 0; w < Nv; w++){ /* 对v的每一个邻接点访问*/
                 if(visited[w] == false && G[v][w] < Integer.MAX_VALUE){ // 没访问过的邻接点
-                    if(G[v][w] < 0){ /*存在负边*/
+                    if(G[v][w] < 0) { /*存在负边*/
                         return false;
                     }
-                    if(dist[v] + G[v][w] < dist[w]){  /* 路径更短*/
+                    if(dist[v] + G[v][w] < dist[w]) {  /* 路径更短 */
                         dist[w] = dist[v] + G[v][w];
                         path[w] = v;
                         fund[w] = fund[v] + GW[v][w];
                     }
                     if(dist[v] + G[v][w] == dist[w] && fund[v] + GW[v][w] < fund[w]){
-
                         path[w] = v;
                         fund[w] = fund[v] + GW[v][w];
                     }

@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 无权图的单元最短路径算法<br>
+ * 无权图的单源最短路径算法<br>
  * 实现----BFS <br>
  * 案例----六度空间
  * (缺陷： 对于边界测试，最大N和 M 错误)

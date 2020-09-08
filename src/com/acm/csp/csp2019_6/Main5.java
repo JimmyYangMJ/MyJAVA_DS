@@ -1,8 +1,8 @@
 package com.acm.csp.csp2019_6;// INFO BEGIN
 //
-// User = 201910005304(ÑîÃ÷½Ü) 
+// User = 201910005304(æ¨æ˜æ°) 
 // Group = JAVA 
-// Problem = ³ÇÊĞ¹æ»® 
+// Problem = åŸå¸‚è§„åˆ’ 
 // Language = JAVA 
 // SubmitTime = 2019-09-15 15:23:20 
 //

@@ -3,22 +3,22 @@ package com.acm.PTA.graph.test;
 import java.util.Scanner;
 
 /**
- * Õü¾È 007
- * DFS£¬ Ã»ÓĞÊ¹ÓÃÍ¼µÄ´æ´¢
+ * æ‹¯æ•‘ 007
+ * DFSï¼Œ æ²¡æœ‰ä½¿ç”¨å›¾çš„å­˜å‚¨
  */
 public class DFS_7_42 {
 
     static Scanner cin = new Scanner(System.in);
-    /** öùÓãÊıÁ¿ N£¨¡Ü100£©*/
+    /** é³„é±¼æ•°é‡ Nï¼ˆâ‰¤100ï¼‰*/
     static int n;
-    /** 007Ò»´ÎÄÜÌøÔ¾µÄ×î´ó¾àÀë */
+    /** 007ä¸€æ¬¡èƒ½è·³è·ƒçš„æœ€å¤§è·ç¦» */
     static int d;
     static boolean[] jump;
     static C[] graph;
     static boolean[] visited;
     static boolean answer;
 
-    /** öùÓãµÄ×ø±ê*/
+    /** é³„é±¼çš„åæ ‡*/
     static class C{
         int x;
         int y;
@@ -29,7 +29,7 @@ public class DFS_7_42 {
         }
     }
 
-    /** ¿ÉÒÔÖ±½ÓÌøÉÏ°¶µÄöùÓã */
+    /** å¯ä»¥ç›´æ¥è·³ä¸Šå²¸çš„é³„é±¼ */
     static void judgeJump() {
         for (int i = 1; i <= n; i++) {
             int x = graph[i].x;
@@ -59,9 +59,9 @@ public class DFS_7_42 {
     }
 
     /**
-     * µİ¹é±éÀú
-     * @param head ¿ªÊ¼½áµã
-     * @return ÊÇ·ñ¿ÉÒÔÌøÉÏ°¶
+     * é€’å½’éå†
+     * @param head å¼€å§‹ç»“ç‚¹
+     * @return æ˜¯å¦å¯ä»¥è·³ä¸Šå²¸
      */
     static boolean DFS(int head) {
         visited[head] = true;
@@ -69,9 +69,9 @@ public class DFS_7_42 {
             answer = true;
         }else{
             for (int i = 1; i <= n; i++) {
-                /** Ã»ÓĞ·ÃÎÊ¹ı£¬ ¿ÉÒÔÌøµ½ */
+                /** æ²¡æœ‰è®¿é—®è¿‡ï¼Œ å¯ä»¥è·³åˆ° */
                 boolean judge;
-                if (head == 0) { // µÚÒ»Ìø
+                if (head == 0) { // ç¬¬ä¸€è·³
                     judge = judgeDistance(graph[head], graph[i], d+15);
                 }else {
                     judge = judgeDistance(graph[head], graph[i], d);
@@ -97,7 +97,7 @@ public class DFS_7_42 {
         judgeJump();
         C people = new C(0, 0);
         boolean result = DFS(0);
-        if (d+15 >= 50){ // Ö±½Ó¿ÉÒÔÌøÉÏ°¶
+        if (d+15 >= 50){ // ç›´æ¥å¯ä»¥è·³ä¸Šå²¸
             System.out.print("Yes");
         }else if (result == true){
             System.out.print("Yes");

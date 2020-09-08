@@ -69,7 +69,6 @@ public class Prim {
         /** 对起点进行初始化*/
         visited[1] = true;
         dist[1] = 0;
-
         while (true){
             int v = distMin(dist, visited); /** 未收录的顶点dist最小者*/
             if (v == -1){

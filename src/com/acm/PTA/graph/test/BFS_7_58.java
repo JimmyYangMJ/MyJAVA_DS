@@ -6,8 +6,8 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * PTA £º ÉîÈë»¢Ñ¨
- * Ë¼Â·£º BFS--Ê÷µÄ²ãĞò±éÀú
+ * PTA ï¼š æ·±å…¥è™ç©´
+ * æ€è·¯ï¼š BFS--æ ‘çš„å±‚åºéå†
  */
 public class BFS_7_58 {
     static Scanner cin = new Scanner(System.in);
@@ -15,9 +15,9 @@ public class BFS_7_58 {
     static  int n;
     public static void main(String[] args) {
         n = cin.nextInt();
-        /** ÏÂ±ê´Ó1 ¿ªÊ¼ */
+        /** ä¸‹æ ‡ä»1 å¼€å§‹ */
         arrayList = new ArrayList<>(n+1);
-        arrayList.add(null);  // ¸øÏÂ±ê 0 ¸³Öµ
+        arrayList.add(null);  // ç»™ä¸‹æ ‡ 0 èµ‹å€¼
 
         for (int i = 1; i <= n; i++) {
             int num = cin.nextInt();
@@ -28,7 +28,7 @@ public class BFS_7_58 {
             }
             arrayList.add(i, linkedList);
         }
-        /**ÏÂÃæ½øĞĞ²ãĞò±éÀú */
+        /**ä¸‹é¢è¿›è¡Œå±‚åºéå† */
         System.out.print(BFS());
 
     }

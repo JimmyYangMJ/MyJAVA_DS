@@ -9,20 +9,20 @@ import java.util.Stack;
 public class Tarjan {
     private int numOfNode;
     static Tarjan t;
-    private List<ArrayList<Integer>> graph;// Í¼
-    private List<ArrayList<Integer>> result;// ±£´æ¼«´óÇ¿Á¬Í¨Í¼
+    private List<ArrayList<Integer>> graph;// å›¾
+    private List<ArrayList<Integer>> result;// ä¿å­˜æå¤§å¼ºè¿é€šå›¾
 
-    private boolean[] inStack;// ½ÚµãÊÇ·ñÔÚÕ»ÄÚ
+    private boolean[] inStack;// èŠ‚ç‚¹æ˜¯å¦åœ¨æ ˆå†…
     private Stack<Integer> stack;
 
-    /** Ê±¼ä´Á£¬µÚ¼¸¸ö·ÃÎÊµÄ*/
+    /** æ—¶é—´æˆ³ï¼Œç¬¬å‡ ä¸ªè®¿é—®çš„*/
     private int[] dfn;
     private int[] low;
     private int time;
 
     /**
-     * ³õÊ¼»¯²Ù×÷£¬
-     * @param graph  Í¼£¬List Array£¨¶şÎ¬Êı×é´æ´¢£©
+     * åˆå§‹åŒ–æ“ä½œï¼Œ
+     * @param graph  å›¾ï¼ŒList Arrayï¼ˆäºŒç»´æ•°ç»„å­˜å‚¨ï¼‰
      * @param numOfNode  vertical
      */
     public Tarjan(List<ArrayList<Integer>> graph, int numOfNode) {
@@ -33,7 +33,7 @@ public class Tarjan {
         dfn = new int[numOfNode];
         low = new int[numOfNode];
 
-        Arrays.fill(dfn, -1);// ½«dfnËùÓĞÔªËØ¶¼ÖÃÎª1£¬ÆäÖĞdfn[i]=-1´ú±íÕâ¸öµãÃ»ÓĞ±»·ÃÎÊ¹ı
+        Arrays.fill(dfn, -1);// å°†dfnæ‰€æœ‰å…ƒç´ éƒ½ç½®ä¸º1ï¼Œå…¶ä¸­dfn[i]=-1ä»£è¡¨è¿™ä¸ªç‚¹æ²¡æœ‰è¢«è®¿é—®è¿‡
         Arrays.fill(low, -1);//
 
         result = new ArrayList<>();
@@ -53,43 +53,43 @@ public class Tarjan {
     }
 
     public void tarjan(int current) {
-        /** ´Ó0¿ªÊ¼´æ´¢*/
+        /** ä»0å¼€å§‹å­˜å‚¨*/
         dfn[current] = low[current] = time++;
         show();
         inStack[current] = true;
         stack.push(current);
 
         for (int i = 0; i < graph.get(current).size(); i++) {
-            int next = graph.get(current).get(i); // ±éÀú current ÓĞ±ß Ö¸ÏòµÄ¶¥µã
-            if (dfn[next] == -1) {  // ¸Ã¶¥µãÃ»ÓĞ·ÃÎÊ¹ı
-                tarjan(next);  // ¶Ô¸Ã½Úµã DFS
-                /** ±¾À´low ºÍ dfnÏàµÈ£¬µ«ÊÇ³öÏÖ»·Â·ºó£¬
-                 * ¸üĞÂlow Ö¸Ïò»·Â·µÄ¸ù£¨Ç¿Á¬Í¨Í¼µÄ¸ù£©
-                 * min ÊÇÒªÕÒ×îÔ­Ê¼µÄ¸ù£¬¼´³öÏÖÊ±¼ä×îÔçµÄ*/
+            int next = graph.get(current).get(i); // éå† current æœ‰è¾¹ æŒ‡å‘çš„é¡¶ç‚¹
+            if (dfn[next] == -1) {  // è¯¥é¡¶ç‚¹æ²¡æœ‰è®¿é—®è¿‡
+                tarjan(next);  // å¯¹è¯¥èŠ‚ç‚¹ DFS
+                /** æœ¬æ¥low å’Œ dfnç›¸ç­‰ï¼Œä½†æ˜¯å‡ºç°ç¯è·¯åï¼Œ
+                 * æ›´æ–°low æŒ‡å‘ç¯è·¯çš„æ ¹ï¼ˆå¼ºè¿é€šå›¾çš„æ ¹ï¼‰
+                 * min æ˜¯è¦æ‰¾æœ€åŸå§‹çš„æ ¹ï¼Œå³å‡ºç°æ—¶é—´æœ€æ—©çš„*/
                 low[current] = Math.min(low[current], low[next]);
                 show();  // useless
-            } else if (inStack[next]) {  // ¸Ã¶¥µã·ÃÎÊ¹ıÁË
-                /** ¸üĞÂlow*/
+            } else if (inStack[next]) {  // è¯¥é¡¶ç‚¹è®¿é—®è¿‡äº†
+                /** æ›´æ–°low*/
                 low[current] = Math.min(low[current], dfn[next]);
                 show(); // useless
             }
         }
         /**
-         * µ±Ç°current µãÒÑ¾­Ã»ÓĞ³ö¶È£¬»òÃ»ÓĞÎ´·ÃÎÊµÄ½áµã
-         * µ±low == dfn;
-         * current ´ËÊ±ÎªÒ»¸öÇ¿Á¬Í¨·ÖÁ¿µÄ¸ù
+         * å½“å‰current ç‚¹å·²ç»æ²¡æœ‰å‡ºåº¦ï¼Œæˆ–æ²¡æœ‰æœªè®¿é—®çš„ç»“ç‚¹
+         * å½“low == dfn;
+         * current æ­¤æ—¶ä¸ºä¸€ä¸ªå¼ºè¿é€šåˆ†é‡çš„æ ¹
          */
         System.out.print("zz");
         stack.forEach(e -> System.out.print(e + " "));
         System.out.println("zz");
         if (low[current] == dfn[current]) {
-            /** tempÔİÊ±´æ´¢Ò»¸öÇ¿Á¬Í¨·ÖÁ¿*/
+            /** tempæš‚æ—¶å­˜å‚¨ä¸€ä¸ªå¼ºè¿é€šåˆ†é‡*/
             ArrayList<Integer> temp = new ArrayList<>();
             int j = -1;
-            /** ³öÕ»£¬Ö±µ½ÍËµ½Ò»¸öÇ¿Á¬Í¨·ÖÁ¿µÄ¸ù*/
+            /** å‡ºæ ˆï¼Œç›´åˆ°é€€åˆ°ä¸€ä¸ªå¼ºè¿é€šåˆ†é‡çš„æ ¹*/
             while (current != j) {
                 j = stack.pop();
-                inStack[j] = false;  //±ê¼Ç²»ÔÚÕ»ÖĞ
+                inStack[j] = false;  //æ ‡è®°ä¸åœ¨æ ˆä¸­
                 temp.add(j);
             }
             result.add(temp);
@@ -97,8 +97,8 @@ public class Tarjan {
     }
 
     /**
-     * Ö÷Òªº¯Êı£¬·ÀÍ¼²»Á¬Í¨
-     * @return  Ç¿Á¬Í¨·ÖÁ¿µÄ¼¯ºÏ
+     * ä¸»è¦å‡½æ•°ï¼Œé˜²å›¾ä¸è¿é€š
+     * @return  å¼ºè¿é€šåˆ†é‡çš„é›†åˆ
      */
     public List<ArrayList<Integer>> run() {
         for (int i = 0; i < numOfNode; i++) {
@@ -110,14 +110,14 @@ public class Tarjan {
 
     public static void main(String[] args) {
 
-        // ´´½¨Í¼
+        // åˆ›å»ºå›¾
         int numOfNode = 8;  // vertical
         List<ArrayList<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < numOfNode; i++) {
             graph.add(new ArrayList<>());
         }
         /** list.ArrayList*/
-        graph.get(0).add(1); // 0 Ö¸Ïò 1
+        graph.get(0).add(1); // 0 æŒ‡å‘ 1
         graph.get(1).add(2);
         graph.get(2).add(3);
         graph.get(3).add(4);
@@ -132,7 +132,7 @@ public class Tarjan {
         List<ArrayList<Integer>> result = t.run();
 
         /**
-         * ´òÓ¡½á¹û
+         * æ‰“å°ç»“æœ
          */
         for (int i = 0; i < result.size(); i++) {
             for (int j = 0; j < result.get(i).size(); j++) {

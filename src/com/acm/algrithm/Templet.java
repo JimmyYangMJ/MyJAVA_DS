@@ -41,6 +41,6 @@ public class Templet {
         InputStream is = System.in;
         PrintWriter out = new PrintWriter(os);
         solve(is, out);
-        out.close(); // 不关闭就没有输出
+        out.close(); // 涓嶅叧闂氨娌℃湁杈撳嚭
     }
 }

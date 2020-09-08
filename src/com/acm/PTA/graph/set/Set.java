@@ -1,4 +1,4 @@
-package com.acm.PTA.graph;
+package com.acm.PTA.graph.set;
 
 import java.util.Arrays;
 import java.util.Scanner;

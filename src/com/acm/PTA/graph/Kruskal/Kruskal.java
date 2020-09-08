@@ -3,23 +3,33 @@ package com.acm.PTA.graph.Kruskal;
 import java.util.*;
 
 /**
- * ¹«Â·´å´åÍ¨ÎÊÌâ
- * Ëã·¨£º ×îĞ¡Éú³ÉÊ÷  Kruskal
- * ÎŞÏòÓĞÈ¨Í¼
- * Í¼´æ´¢--- ÁÚ½Ó¾ØÕó
+ * å…¬è·¯æ‘æ‘é€šé—®é¢˜
+ * ç®—æ³•ï¼š æœ€å°ç”Ÿæˆæ ‘  Kruskal
+ * æ— å‘æœ‰æƒå›¾
+ * å›¾å­˜å‚¨--- é‚»æ¥çŸ©é˜µ
+ *
+ * ç°æœ‰æ‘è½é—´é“è·¯çš„ç»Ÿè®¡æ•°æ®è¡¨ä¸­ï¼Œåˆ—å‡ºäº†æœ‰å¯èƒ½å»ºè®¾æˆæ ‡å‡†å…¬è·¯çš„è‹¥å¹²æ¡é“è·¯çš„æˆæœ¬ï¼Œ
+ * æ±‚ä½¿æ¯ä¸ªæ‘è½éƒ½æœ‰å…¬è·¯è¿é€šæ‰€éœ€è¦çš„æœ€ä½æˆæœ¬ã€‚
+ *
+ * è¾“å…¥æ ¼å¼:
+ * è¾“å…¥æ•°æ®åŒ…æ‹¬åŸé•‡æ•°ç›®æ­£æ•´æ•°Nï¼ˆâ‰¤1000ï¼‰å’Œå€™é€‰é“è·¯æ•°ç›®Mï¼ˆâ‰¤3Nï¼‰ï¼›éšåçš„Mè¡Œå¯¹åº”Mæ¡é“è·¯ï¼Œæ¯è¡Œç»™å‡º3ä¸ªæ­£æ•´æ•°ï¼Œ
+ * åˆ†åˆ«æ˜¯è¯¥æ¡é“è·¯ç›´æ¥è¿é€šçš„ä¸¤ä¸ªåŸé•‡çš„ç¼–å·ä»¥åŠè¯¥é“è·¯æ”¹å»ºçš„é¢„ç®—æˆæœ¬ã€‚ä¸ºç®€å•èµ·è§ï¼ŒåŸé•‡ä»1åˆ°Nç¼–å·ã€‚
+ *
+ * è¾“å‡ºæ ¼å¼:
+ * è¾“å‡ºæ‘æ‘é€šéœ€è¦çš„æœ€ä½æˆæœ¬ã€‚å¦‚æœè¾“å…¥æ•°æ®ä¸è¶³ä»¥ä¿è¯ç•…é€šï¼Œåˆ™è¾“å‡ºâˆ’1ï¼Œè¡¨ç¤ºéœ€è¦å»ºè®¾æ›´å¤šå…¬è·¯ã€‚
  */
 public class Kruskal {
 
     static Scanner cin = new Scanner(System.in);
-    /** µãÊı£¬ ±ßÊı, ´Ó1¿ªÊ¼*/
+    /** ç‚¹æ•°ï¼Œ è¾¹æ•°, ä»1å¼€å§‹*/
     static int Nv, Ne;
     static ArrayList<Edge> edges;
-    /** ²¢²é¼¯£¬ µãÊı*/
+    /** å¹¶æŸ¥é›†ï¼Œ ç‚¹æ•°*/
     static int[] s;
 
     static class Edge implements Comparable<Edge>{
         int v1, v2;
-        int w; // È¨ÖØ
+        int w; // æƒé‡
         Edge(int v1, int v2, int w){
             this.v1 = v1;
             this.v2 = v2;
@@ -31,52 +41,51 @@ public class Kruskal {
         }
     }
 
-    /** ÕÒµ½Ò»¸ö½áµãËùÔÚµÄ¼¯ºÏ*/
+    /** æ‰¾åˆ°ä¸€ä¸ªç»“ç‚¹æ‰€åœ¨çš„é›†åˆ*/
     static int find(int x) {
-        if (s[x] < 0) { /* ±¾ÉíÎªÒ»¸ö¼¯ºÏ*/
+        if (s[x] < 0) { /* æœ¬èº«ä¸ºä¸€ä¸ªé›†åˆ*/
             return x;
         }else {
             return s[x] = find(s[x]);
         }
     }
 
-    /** ºÏ²¢¼¯ºÏ*/
+    /** åˆå¹¶é›†åˆ*/
     static int union(int root1, int root2) {
-        if(s[root1] > s[root2]) { /* Èç¹û¼¯ºÏ2±È½Ï´ó */
+        if(s[root1] > s[root2]) { /* å¦‚æœé›†åˆ2æ¯”è¾ƒå¤§ */
             s[root2] += s[root1];
-            s[root1] = root2;    /* ¼¯ºÏ1²¢Èë¼¯ºÏ2  */
+            s[root1] = root2;    /* é›†åˆ1å¹¶å…¥é›†åˆ2  */
             return  root2;
         }else{
             s[root1] += s[root2];
-            s[root2] = root1;    /* ¼¯ºÏ2²¢Èë¼¯ºÏ1  */
+            s[root2] = root1;    /* é›†åˆ2å¹¶å…¥é›†åˆ1  */
             return  root1;
         }
-
     }
 
-    /** ¼à²âÁ©¸öÊÇ·ñÎªÒ»¸ö¼¯ºÏ*/
+    /** ç›‘æµ‹ä¿©ä¸ªæ˜¯å¦ä¸ºä¸€ä¸ªé›†åˆ*/
     static boolean isSameSet(int x, int y) {
         return find(x) == find(y);
     }
 
     static void kruskal(){
-        /** Éú³ÉÊ÷±ß¼ÆÊı*/
+        /** ç”Ÿæˆæ ‘è¾¹è®¡æ•°*/
         int edgeN = 0;
-        /** ×îĞ¡Éú³ÉÊ÷È¨ÖØºÍ*/
+        /** æœ€å°ç”Ÿæˆæ ‘æƒé‡å’Œ*/
         int cost = 0;
-        /** ÏÂÒ»¸öÈ¨ÖØ×îĞ¡±ßµÄÎ»ÖÃ */
+        /** ä¸‹ä¸€ä¸ªæƒé‡æœ€å°è¾¹çš„ä½ç½® */
         int nextEdge = 0;
         s = new int[Nv+1];
-        /** ³õÊ¼»¯²¢²é¼¯*/
+        /** åˆå§‹åŒ–å¹¶æŸ¥é›†*/
         Arrays.fill(s,-1);
-        Collections.sort(edges); /* ¶Ô±ß¼¯ ºÏÅÅĞò, »òÕßÊ¹ÓÃ×îĞ¡¶Ñ*/
-        while (edgeN < Nv-1) { /* ±ßÎ´ÊÕ¼¯Íê³É*/
+        Collections.sort(edges); /* å¯¹è¾¹é›† åˆæ’åº, æˆ–è€…ä½¿ç”¨æœ€å°å †*/
+        while (edgeN < Nv-1) { /* è¾¹æœªæ”¶é›†å®Œæˆ*/
             if (nextEdge >= Ne) {
                 break;
             }
             int v1 = edges.get(nextEdge).v1;
             int v2 = edges.get(nextEdge).v2;
-            if (!isSameSet(v1, v2)){ /*Á½¸ö²»ÊÇÒ»¸ö¼¯ºÏ£¨Ã»ÓĞĞÎ³É»·Â·£©*/
+            if (!isSameSet(v1, v2)){ /*ä¸¤ä¸ªä¸æ˜¯ä¸€ä¸ªé›†åˆï¼ˆæ²¡æœ‰å½¢æˆç¯è·¯ï¼‰*/
                 cost += edges.get(nextEdge).w;
                 edgeN++;
                 union(find(v1), find(v2));
@@ -84,7 +93,7 @@ public class Kruskal {
             nextEdge++;
         }
         if (edgeN < Nv-1){
-            cost = -1; /* Í¼²»Á¬Í¨*/
+            cost = -1; /* å›¾ä¸è¿é€š*/
         }
         System.out.println(cost);
     }
@@ -93,7 +102,7 @@ public class Kruskal {
         Nv = cin.nextInt();
         Ne = cin.nextInt();
         edges = new ArrayList<>();
-        if (Ne < Nv-1) { /* ±ßÊı²»¹»£¬ Í¼²»Á¬Í¨*/
+        if (Ne < Nv-1) { /* è¾¹æ•°ä¸å¤Ÿï¼Œ å›¾ä¸è¿é€š*/
             System.out.println("-1");
         }else {
             for (int i = 0; i < Ne; i++) {
