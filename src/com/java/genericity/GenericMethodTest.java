@@ -1,4 +1,4 @@
-package com.java.Generics;
+package com.java.genericity;
 
 public class GenericMethodTest
 {
