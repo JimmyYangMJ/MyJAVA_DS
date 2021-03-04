@@ -5,10 +5,8 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * ���м������Ԯ
- * �� ���·���������� Ȩ�غ���� ����·��
- * �ڽӾ���
- * @Date�� 2019/12/7 19:06
+
+ * @Date 2019/12/7 19:06
  */
 public class Main2 {
     static int Nv, Ne, start, end;

@@ -3,22 +3,22 @@ import java.util.Date;
 public class WebSocketMessage {
 
     /**
-     * ·¢ËÍÕßID
+     * å‘é€è€…ID
      */
     private String senderId;
 
     /**
-     * ½ÓÊÜÕßID, Èç¹ûÎª0, Ôò·¢ËÍ¸øËùÓĞÈË
+     * æ¥å—è€…ID, å¦‚æœä¸º0, åˆ™å‘é€ç»™æ‰€æœ‰äºº
      */
     private String receiverId;
 
     /**
-     * »á»°ÄÚÈİ
+     * ä¼šè¯å†…å®¹
      */
     private String messageContent;
 
     /**
-     * ·¢ËÍÊ±¼ä
+     * å‘é€æ—¶é—´
      */
     private Date sendTime;
 

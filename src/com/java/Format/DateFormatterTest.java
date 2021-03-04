@@ -7,17 +7,17 @@ import java.time.format.DateTimeFormatter;
 public class DateFormatterTest {
 
 	public static void main(String[] args) {
-		//½«×Ö·û´®×ª»¯ÎªÊ±¼ä
-		String dateStr= "2016Äê10ÔÂ25ÈÕ";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyÄêMMÔÂddÈÕ");
+		//å°†å­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ—¶é—´
+		String dateStr= "2016å¹´10æœˆ25æ—¥";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyå¹´MMæœˆddæ—¥");
         LocalDate date= LocalDate.parse(dateStr, formatter);
         System.out.println(date.getYear() + "-" + date.getMonthValue() + "-" + date.getDayOfMonth());
         
         System.out.println("==========================");
         
-        //½«ÈÕÆÚ×ª»»Îª×Ö·û´®Êä³ö
+        //å°†æ—¥æœŸè½¬æ¢ä¸ºå­—ç¬¦ä¸²è¾“å‡º
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyÄêMMÔÂddÈÕ hh:mm:ss");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyå¹´MMæœˆddæ—¥ hh:mm:ss");
         String nowStr = now.format(format);
         System.out.println(nowStr);
 

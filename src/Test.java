@@ -20,7 +20,6 @@ import javax.imageio.ImageIO;
  * @Mod
  */
 public class Test {
-
      private Logger logger=Logger.getLogger(this.getClass());
 
     public static void main(String[] args) throws Exception {
@@ -31,10 +30,7 @@ public class Test {
 //        编码后的是%E6%B5%8B%E8%AF%95；
 //        而用ISO-8859-1解码后的是???è?；
         System.out.println(java.net.URLDecoder.decode(name, "UTF-8"));
-
         //System.out.printf("%s\n", getMacStr());
-
-
     }
 
     public static String getMacStr() throws Exception{
@@ -58,7 +54,7 @@ public class Test {
                 sb.append("-");
             }
             // 字节转换为整数
-            int temp = mac[i]&0xff;
+            int temp = mac[i] & 0xff;
             String str = Integer.toHexString(temp);
             if(str.length()==1) {
                 sb.append("0"+str);
@@ -93,9 +89,10 @@ public class Test {
                 }
             }
             ImageIO.write(newImage, "JPG", new FileOutputStream("D:\\temp.jpg"));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 

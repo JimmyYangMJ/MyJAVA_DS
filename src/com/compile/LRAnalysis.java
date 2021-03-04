@@ -13,8 +13,27 @@ import java.util.*;
  */
 public class LRAnalysis {
 
+
     public static Scanner cin = new Scanner(System.in);
 
+    /**
+     * 1
+      数据结构 （查找，排序）
+      计算机网络
+       |------OSI 7  /  TCP/IP4 4 ==5
+      计算机组成原理、
+       |------  数据表示，原码 补码 反码
+                存储系统：cache，虚拟存储器 ···
+                指令系统
+                中央处理器：控制器，运算器
+                总线
+                IO系统
+      操作系统：进程-
+               处理机，处理机调度，（进程/作业/内存调度），
+               存储器管理（内存），虚拟存储器
+               IO系统
+               文件管理(外存)
+     */
     /** LR(0)分析表 */
     private static  Map<Character, String>[] LRTable;
 
@@ -28,11 +47,9 @@ public class LRAnalysis {
     private static Stack<Character> symbolStack;
 
     /** 构造 LR（0） 表 */
-    public static void initLRTable() {
+    private static void initLRTable() {
         LRTable = new HashMap[12];
-        for (int i= 0; i < LRTable.length; i++) {
-            LRTable[i] = new HashMap<>(6);
-        }
+        Arrays.fill(LRTable, new HashMap<>(6));
         LRTable[0].put('a', "s2"); LRTable[0].put('b', "s3"); LRTable[0].put('E', "1");
         LRTable[1].put('$', "acc");
         LRTable[2].put('c', "s5");LRTable[2].put('d', "s6");LRTable[2].put('A', "4");
@@ -55,12 +72,24 @@ public class LRAnalysis {
                 {"B", "cB"},
                 {"B", "d"}
         };
-
-        int[][] arr1 = {{1,2}, {2, 3}, {4, 5}};
-
-
     }
 
+    /**
+     * @param p
+     * @param input
+     * @param action   bribe     pathetic pit rack certify superficial
+     *                corporate  controversy uniformity exemplify
+     *                 windfall to suppress inflate deflate
+     *                 preserve 保持，保护  reserve reverse persevere 坚持  axiomatic 公理的
+     *                 cognitive 认知的  recognize 认识的 ; affirm confirm ;
+     *                 freshman sophomore juniors senior
+     *                 announce 宣布, renounce 放弃; disclaim, fury,
+     *                 fertile fertilize; blow bow ; ethic ethnic,
+     *                  induce 诱导 intrude 侵入 communal trim
+     *                 literature philosophy  philology
+     *                  ;press for ;
+     *
+     */
     public static void printTable(int p, String input, String action) {
         String status = "";
         for (int temp: statusStack) {

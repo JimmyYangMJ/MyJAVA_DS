@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Dijkstra �㷨
- * ͼ�洢�� �ڽӾ���
- * ͼ���ͣ�������Ȩͼ
+ * Dijkstra
  */
 public class Main {
 
@@ -41,7 +39,7 @@ public class Main {
             dist[i] = G[start][i];
             path[i] = start;
         }
-        // ��¼ start
+        //  start
         visit[start] = true;
         dist[start] = 0;
         int count = 1;
